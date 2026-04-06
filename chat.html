@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Fix9ja — Chat & Escrow</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Fraunces:wght@700;900&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --g1:#0d5c34;--g2:#1A6B3C;--g3:#2E8B57;--g4:#E8F4ED;--g5:#c3dece;
+  --gold:#f5a623;--gold2:#C89B3C;--gold-lt:#FFF8E8;
+  --red:#DC2626;--red-lt:#FEE2E2;
+  --blue:#2563EB;--blue-lt:#DBEAFE;
+  --amber:#F59E0B;--amber-lt:#FEF3C7;
+  --ink:#1a1a1a;--ink2:#444;--ink3:#888;
+  --bg:#F5F8F6;--white:#fff;--border:#e2ebe6;
+  --font:'DM Sans',sans-serif;--serif:'Fraunces',serif;
+  --radius:14px;--chat-h:calc(100vh - 200px);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:var(--font);background:var(--bg);color:var(--ink);min-height:100vh;}
+
+/* ── TOP BAR ── */
+.topbar{
+  position:sticky;top:0;z-index:100;
+  background:var(--g1);padding:0 16px;height:56px;
+  display:flex;align-items:center;gap:12px;
+  box-shadow:0 2px 12px rgba(0,0,0,.2);
+}
+.back-btn{color:rgba(255,255,255,.7);font-size:20px;cursor:pointer;line-height:1;padding:4px;}
+.artisan-avatar{width:36px;height:36px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:#fff;flex-shrink:0;}
+.artisan-info{flex:1;}
+.artisan-name{color:#fff;font-weight:700;font-size:14px;}
+.artisan-trade{color:rgba(255,255,255,.6);font-size:11px;}
+.chat-status-dot{width:8px;height:8px;border-radius:50%;background:#22C55E;margin-left:auto;}
+
+/* ── JOB STATUS BAR ── */
+.job-bar{
+  background:#fff;border-bottom:1px solid var(--border);
+  padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:8px;
+}
+.job-bar-info{font-size:12.5px;color:var(--ink2);}
+.job-bar-info strong{color:var(--g1);font-weight:700;}
+.job-bar-status{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;}
+.js-open{background:var(--blue-lt);color:var(--blue);}
+.js-locked{background:var(--amber-lt);color:#B45309;}
+.js-paid{background:#DCFCE7;color:#16A34A;}
+.js-completed{background:#DCFCE7;color:#16A34A;}
+.js-disputed{background:var(--red-lt);color:var(--red);}
+
+/* ── WARNING ── */
+.safety-warn{
+  background:var(--amber-lt);border-bottom:1px solid #fde68a;
+  padding:8px 16px;font-size:11.5px;color:#78350f;
+  display:flex;align-items:center;gap:8px;
+}
+
+/* ── CHAT CONTAINER ── */
+.chat-wrap{
+  height:var(--chat-h);overflow-y:auto;padding:16px;
+  display:flex;flex-direction:column;gap:12px;
+  scroll-behavior:smooth;
+}
+.chat-wrap::-webkit-scrollbar{width:4px;}
+.chat-wrap::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px;}
+
+/* ── MESSAGES ── */
+.msg{display:flex;gap:8px;max-width:80%;}
+.msg.me{flex-direction:row-reverse;align-self:flex-end;}
+.msg.them{align-self:flex-start;}
+.msg-av{width:28px;height:28px;border-radius:50%;background:var(--g4);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--g2);flex-shrink:0;margin-top:auto;}
+.msg.me .msg-av{background:var(--g1);color:#fff;}
+.msg-body{}
+.msg-sender{font-size:10px;font-weight:600;color:var(--ink3);margin-bottom:3px;}
+.msg.me .msg-sender{text-align:right;}
+.msg-bubble{
+  padding:10px 14px;border-radius:16px;font-size:13.5px;line-height:1.5;
+  word-break:break-word;
+}
+.msg.them .msg-bubble{background:#fff;border:1px solid var(--border);color:var(--ink);border-bottom-left-radius:4px;}
+.msg.me .msg-bubble{background:var(--g1);color:#fff;border-bottom-right-radius:4px;}
+.msg-time{font-size:10px;color:var(--ink3);margin-top:3px;}
+.msg.me .msg-time{text-align:right;}
+
+/* QUOTE MESSAGE */
+.quote-msg{
+  background:var(--gold-lt);border:1.5px solid var(--gold);border-radius:12px;
+  padding:12px 14px;max-width:80%;align-self:flex-start;
+}
+.quote-label{font-size:11px;font-weight:700;color:var(--gold2);margin-bottom:6px;}
+.quote-amount{font-family:var(--serif);font-size:22px;font-weight:900;color:var(--g1);}
+.quote-desc{font-size:12.5px;color:var(--ink2);margin-top:4px;}
+.quote-btns{display:flex;gap:8px;margin-top:12px;}
+.q-btn{flex:1;padding:9px;border-radius:9px;font-family:var(--font);font-size:12.5px;font-weight:700;cursor:pointer;border:none;transition:all .2s;}
+.q-accept{background:var(--g1);color:#fff;}
+.q-accept:hover{background:var(--g2);}
+.q-decline{background:var(--red-lt);color:var(--red);}
+.q-decline:hover{background:#fecaca;}
+
+/* SYSTEM MESSAGES */
+.sys-msg{
+  align-self:center;background:rgba(0,0,0,.05);
+  border-radius:20px;padding:5px 14px;font-size:11px;color:var(--ink3);
+  text-align:center;max-width:90%;
+}
+
+/* TIMER ALERT */
+.timer-alert{
+  background:var(--amber-lt);border:1px solid #fde68a;border-radius:12px;
+  padding:14px 16px;margin:8px 16px;font-size:13px;color:#78350f;
+  display:none;
+}
+.timer-alert.show{display:block;}
+.timer-btns{display:flex;gap:8px;margin-top:10px;}
+.t-btn{flex:1;padding:9px;border-radius:9px;font-family:var(--font);font-size:12.5px;font-weight:700;cursor:pointer;border:none;}
+.t-back{background:var(--border);color:var(--ink);}
+.t-auto{background:var(--g1);color:#fff;}
+
+/* ── LOCKED OVERLAY ── */
+.locked-banner{
+  background:var(--amber-lt);border-top:1px solid #fde68a;border-bottom:1px solid #fde68a;
+  padding:12px 16px;text-align:center;font-size:13px;color:#78350f;font-weight:600;display:none;
+}
+.locked-banner.show{display:block;}
+
+/* ── PAYMENT PANEL ── */
+.pay-panel{
+  background:#fff;border-top:2px solid var(--g1);padding:16px;
+  display:none;
+}
+.pay-panel.show{display:block;}
+.pay-panel-title{font-family:var(--serif);font-weight:900;font-size:17px;color:var(--g1);margin-bottom:4px;}
+.pay-panel-sub{font-size:12px;color:var(--ink3);margin-bottom:14px;}
+.pay-amount-row{display:flex;align-items:center;justify-content:space-between;padding:12px;background:var(--g4);border-radius:10px;margin-bottom:12px;}
+.pay-amount-lbl{font-size:12px;color:var(--ink2);}
+.pay-amount-val{font-family:var(--serif);font-size:20px;font-weight:900;color:var(--g1);}
+.pay-warn{font-size:11.5px;color:var(--red);background:var(--red-lt);padding:8px 12px;border-radius:8px;margin-bottom:12px;}
+.pay-btn{width:100%;padding:14px;background:var(--g1);color:#fff;border:none;border-radius:12px;font-family:var(--font);font-size:14px;font-weight:700;cursor:pointer;transition:background .2s;}
+.pay-btn:hover{background:var(--g2);}
+
+/* ── CONTACT UNLOCKED ── */
+.contact-panel{
+  background:#DCFCE7;border-top:2px solid #16A34A;padding:16px;display:none;
+}
+.contact-panel.show{display:block;}
+.contact-lbl{font-size:12px;font-weight:700;color:#16A34A;margin-bottom:8px;}
+.contact-phone{font-family:var(--serif);font-size:20px;font-weight:900;color:var(--g1);}
+.call-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:12px;background:var(--g1);color:#fff;border:none;border-radius:12px;font-family:var(--font);font-size:14px;font-weight:700;cursor:pointer;margin-top:10px;text-decoration:none;}
+
+/* ── CONFIRM JOB ── */
+.confirm-panel{
+  background:var(--g4);border-top:2px solid var(--g2);padding:16px;display:none;
+}
+.confirm-panel.show{display:block;}
+.confirm-btn{width:100%;padding:13px;background:var(--g2);color:#fff;border:none;border-radius:12px;font-family:var(--font);font-size:14px;font-weight:700;cursor:pointer;margin-bottom:8px;}
+.dispute-link{display:block;text-align:center;font-size:12.5px;color:var(--red);cursor:pointer;text-decoration:underline;}
+
+/* ── DISPUTE FORM ── */
+.dispute-form{display:none;background:var(--red-lt);border-top:2px solid var(--red);padding:16px;}
+.dispute-form.show{display:block;}
+.d-label{font-size:12px;font-weight:600;color:var(--ink2);margin-bottom:5px;}
+.d-select,.d-textarea{width:100%;border:1.5px solid var(--border);border-radius:9px;padding:10px 12px;font-family:var(--font);font-size:13px;outline:none;margin-bottom:10px;}
+.d-textarea{resize:vertical;min-height:80px;}
+.d-submit{width:100%;padding:12px;background:var(--red);color:#fff;border:none;border-radius:10px;font-family:var(--font);font-size:13px;font-weight:700;cursor:pointer;}
+
+/* ── ARTISAN: QUOTE SENDER ── */
+.quote-panel{
+  background:var(--gold-lt);border-top:2px solid var(--gold);padding:14px 16px;
+  display:none;
+}
+.quote-panel.show{display:block;}
+.quote-panel-title{font-size:13px;font-weight:700;color:var(--gold2);margin-bottom:10px;}
+.q-input{width:100%;border:1.5px solid var(--border);border-radius:9px;padding:10px 12px;font-family:var(--font);font-size:13px;outline:none;margin-bottom:8px;}
+.q-send-btn{width:100%;padding:11px;background:var(--gold2);color:#fff;border:none;border-radius:9px;font-family:var(--font);font-size:13px;font-weight:700;cursor:pointer;}
+
+/* ── INPUT BAR ── */
+.input-bar{
+  position:sticky;bottom:0;background:#fff;border-top:1px solid var(--border);
+  padding:10px 16px;display:flex;gap:8px;align-items:flex-end;
+}
+.chat-input{
+  flex:1;border:1.5px solid var(--border);border-radius:22px;padding:10px 16px;
+  font-family:var(--font);font-size:13.5px;outline:none;resize:none;max-height:100px;
+  transition:border-color .2s;line-height:1.4;
+}
+.chat-input:focus{border-color:var(--g2);}
+.chat-input:disabled{background:var(--bg);color:var(--ink3);}
+.send-btn{
+  width:42px;height:42px;border-radius:50%;background:var(--g1);border:none;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;
+  flex-shrink:0;transition:background .2s;
+}
+.send-btn:hover{background:var(--g2);}
+.send-btn:disabled{background:var(--border);}
+.quote-trigger{width:42px;height:42px;border-radius:50%;background:var(--gold-lt);border:1.5px solid var(--gold);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;display:none;}
+.quote-trigger.show{display:flex;}
+
+/* ── LOADING / EMPTY ── */
+.loading-msg{text-align:center;padding:32px;color:var(--ink3);font-size:13px;}
+.spinner-sm{width:24px;height:24px;border:3px solid var(--g4);border-top-color:var(--g2);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 10px;}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ── TOAST ── */
+.toast-wrap{position:fixed;top:70px;right:12px;left:12px;z-index:999;display:flex;flex-direction:column;gap:6px;align-items:center;}
+.toast{background:#fff;border:1px solid var(--border);border-radius:10px;padding:10px 16px;font-size:13px;font-weight:500;box-shadow:0 6px 20px rgba(0,0,0,.1);display:flex;align-items:center;gap:8px;animation:fadeIn .25s ease;}
+.toast.success{border-left:4px solid #16A34A;}
+.toast.error{border-left:4px solid var(--red);}
+.toast.info{border-left:4px solid var(--blue);}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── INIT SCREEN ── */
+.init-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:24px;background:var(--bg);}
+.init-logo{font-family:var(--serif);font-size:2.2rem;font-weight:900;color:var(--g1);margin-bottom:4px;}
+.init-logo span{color:var(--gold);}
+.init-sub{font-size:13px;color:var(--ink3);margin-bottom:32px;text-align:center;}
+.init-card{background:#fff;border-radius:var(--radius);padding:24px;width:100%;max-width:380px;border:1px solid var(--border);}
+.init-label{font-size:12px;font-weight:600;color:var(--ink2);margin-bottom:6px;}
+.init-input{width:100%;border:1.5px solid var(--border);border-radius:9px;padding:11px 14px;font-family:var(--font);font-size:13.5px;outline:none;margin-bottom:12px;transition:border-color .2s;}
+.init-input:focus{border-color:var(--g2);}
+.init-select{width:100%;border:1.5px solid var(--border);border-radius:9px;padding:11px 14px;font-family:var(--font);font-size:13.5px;outline:none;margin-bottom:16px;background:#fff;}
+.init-btn{width:100%;padding:13px;background:var(--g1);color:#fff;border:none;border-radius:10px;font-family:var(--font);font-size:14px;font-weight:700;cursor:pointer;transition:background .2s;}
+.init-btn:hover{background:var(--g2);}
+.init-or{text-align:center;font-size:12px;color:var(--ink3);margin:14px 0;}
+.init-link-btn{width:100%;padding:11px;background:var(--g4);color:var(--g1);border:1.5px solid var(--g5);border-radius:10px;font-family:var(--font);font-size:13px;font-weight:600;cursor:pointer;}
+
+/* ── ARTISAN LIST CARD ── */
+.art-list-wrap{background:#fff;border-radius:var(--radius);padding:16px;border:1px solid var(--border);margin-top:16px;width:100%;max-width:380px;}
+.art-list-title{font-weight:700;font-size:14px;color:var(--ink);margin-bottom:12px;}
+.art-card{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);cursor:pointer;}
+.art-card:last-child{border-bottom:none;}
+.art-card:hover{background:var(--g4);margin:0 -12px;padding:10px 12px;border-radius:8px;}
+.art-av{width:40px;height:40px;border-radius:50%;background:var(--g2);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;}
+.art-nm{font-weight:700;font-size:13.5px;color:var(--ink);}
+.art-trade{font-size:11.5px;color:var(--ink3);}
+.art-rating{font-size:11.5px;color:var(--gold2);margin-left:auto;flex-shrink:0;}
+</style>
+</head>
+<body>
+
+<div class="toast-wrap" id="toastWrap"></div>
+
+<!-- ── INIT SCREEN ── -->
+<div id="initScreen">
+  <div class="init-screen">
+    <div class="init-logo">Fix<span>9</span>ja</div>
+    <p class="init-sub">Secure Chat & Escrow for Home Services</p>
+    <div class="init-card">
+      <div class="init-label">Your Name</div>
+      <input class="init-input" id="initName" placeholder="e.g. Chidi Okafor"/>
+      <div class="init-label">Your Role</div>
+      <select class="init-select" id="initRole">
+        <option value="user">Homeowner (I need a service)</option>
+        <option value="artisan">Artisan (I provide a service)</option>
+      </select>
+      <div class="init-label">Your ID (Firebase UID or phone)</div>
+      <input class="init-input" id="initUID" placeholder="e.g. uid123 or 08012345678"/>
+      <button class="init-btn" onclick="initChat()">Start Chatting →</button>
+      <div class="init-or">— or —</div>
+      <button class="init-link-btn" onclick="showArtisanList()">📍 Find an Artisan Near Me</button>
+    </div>
+    <div id="artisanListWrap" style="display:none;" class="art-list-wrap">
+      <div class="art-list-title">Available Artisans Near You</div>
+      <div id="artisanListBody"><div class="loading-msg"><div class="spinner-sm"></div>Finding artisans...</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── CHAT SCREEN ── -->
+<div id="chatScreen" style="display:none;">
+
+  <!-- Topbar -->
+  <div class="topbar">
+    <span class="back-btn" onclick="goBack()">←</span>
+    <div class="artisan-avatar" id="chatAvatar">?</div>
+    <div class="artisan-info">
+      <div class="artisan-name" id="chatName">Loading...</div>
+      <div class="artisan-trade" id="chatTrade"></div>
+    </div>
+    <div class="chat-status-dot" id="statusDot"></div>
+  </div>
+
+  <!-- Job status bar -->
+  <div class="job-bar" id="jobBar" style="display:none;">
+    <div class="job-bar-info">Job: <strong id="jobAmountDisplay">₦0</strong> agreed</div>
+    <span class="job-bar-status" id="jobStatusBadge">open</span>
+  </div>
+
+  <!-- Safety warning -->
+  <div class="safety-warn">
+    🔒 <span>Never share bank details or contacts outside Fix9ja. All payments are protected through the app.</span>
+  </div>
+
+  <!-- Timer alert -->
+  <div class="timer-alert" id="timerAlert">
+    ⏱️ <strong>Artisan hasn't responded in 3 minutes.</strong> Would you like to find another?
+    <div class="timer-btns">
+      <button class="t-btn t-back" onclick="goBackToList()">← Pick Another</button>
+      <button class="t-btn t-auto" onclick="autoAssign()">🤖 Auto-Assign</button>
+    </div>
+  </div>
+
+  <!-- Chat messages -->
+  <div class="chat-wrap" id="chatWrap">
+    <div class="loading-msg"><div class="spinner-sm"></div>Loading chat...</div>
+  </div>
+
+  <!-- Locked banner -->
+  <div class="locked-banner" id="lockedBanner">
+    🔒 Chat is locked. Please complete payment to continue.
+  </div>
+
+  <!-- ARTISAN: Quote sender panel -->
+  <div class="quote-panel" id="quotePanel">
+    <div class="quote-panel-title">💰 Send a Quote to the Homeowner</div>
+    <input class="q-input" id="quoteAmountInput" type="number" placeholder="Enter amount in ₦ (e.g. 15000)"/>
+    <input class="q-input" id="quoteDescInput" placeholder="Description (e.g. Fix leaking pipe, includes materials)"/>
+    <button class="q-send-btn" onclick="sendQuote()">📤 Send Quote</button>
+  </div>
+
+  <!-- Payment panel (shown after user accepts quote) -->
+  <div class="pay-panel" id="payPanel">
+    <div class="pay-panel-title">Secure Payment</div>
+    <div class="pay-panel-sub">Your payment is held safely in escrow until the job is done.</div>
+    <div class="pay-amount-row">
+      <div class="pay-amount-lbl">Amount to pay</div>
+      <div class="pay-amount-val" id="payAmountDisplay">₦0</div>
+    </div>
+    <div class="pay-warn">⚠️ For your safety, never pay outside Fix9ja. Payments are only protected through the app.</div>
+    <button class="pay-btn" onclick="launchPayment()">🔐 Pay Securely with Paystack</button>
+  </div>
+
+  <!-- Contact unlocked panel (after payment) -->
+  <div class="contact-panel" id="contactPanel">
+    <div class="contact-lbl">✅ Payment received. Contact info unlocked.</div>
+    <div class="contact-phone" id="artisanPhoneDisplay">—</div>
+    <a class="call-btn" id="callBtn" href="#">📞 Call Artisan</a>
+    <div style="font-size:11.5px;color:#16A34A;margin-top:8px;text-align:center;">Job officially started. Confirm when done.</div>
+  </div>
+
+  <!-- Confirm job done panel -->
+  <div class="confirm-panel" id="confirmPanel">
+    <button class="confirm-btn" onclick="confirmJobDone()">✅ Confirm Job Completed</button>
+    <span class="dispute-link" id="disputeLink" style="display:none;" onclick="openDisputeForm()">⚠️ Raise a Dispute</span>
+  </div>
+
+  <!-- Dispute form -->
+  <div class="dispute-form" id="disputeForm">
+    <div class="d-label">Reason for Dispute</div>
+    <select class="d-select" id="disputeReason">
+      <option value="">Select a reason</option>
+      <option value="Poor workmanship">Poor workmanship</option>
+      <option value="Job not completed">Job not completed</option>
+      <option value="Artisan behaviour">Artisan behaviour</option>
+      <option value="Other">Other</option>
+    </select>
+    <div class="d-label">Describe the issue</div>
+    <textarea class="d-textarea" id="disputeDesc" placeholder="Tell us what happened..."></textarea>
+    <button class="d-submit" onclick="submitDispute()">Submit Dispute</button>
+  </div>
+
+  <!-- Input bar -->
+  <div class="input-bar" id="inputBar">
+    <button class="quote-trigger" id="quoteTrigger" onclick="toggleQuotePanel()" title="Send a quote">💰</button>
+    <textarea class="chat-input" id="msgInput" rows="1" placeholder="Type a message..." onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+    <button class="send-btn" id="sendBtn" onclick="sendMessage()">➤</button>
+  </div>
+
+</div><!-- chatScreen -->
+
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<script src="https://js.paystack.co/v1/inline.js"></script>
+
+<script>
+// ── CONFIG ─────────────────────────────────────────────────────────────────
+const PAYSTACK_PK = 'pk_test_827c24659f586070f6fa37830ed2830cb019ed33';
+const FIX9JA_EMAIL = 'danielameh1027@gmail.com';
+
+firebase.initializeApp({
+  apiKey:"AIzaSyC_IZHL05rgOHTePK30eADjIosymBTsumM",
+  authDomain:"fix9ja.firebaseapp.com",
+  projectId:"fix9ja",
+  storageBucket:"fix9ja.firebasestorage.app",
+  messagingSenderId:"737841144418",
+  appId:"1:737841144418:web:f751bab417a1764a09a73b",
+  databaseURL:"https://fix9ja-default-rtdb.firebaseio.com"
+});
+const db   = firebase.firestore();
+const rtdb = firebase.database();
+
+// ── STATE ──────────────────────────────────────────────────────────────────
+let ME = null;        // { uid, name, role, email }
+let ARTISAN = null;   // { uid, name, trade, phone, rating }
+let JOB = null;       // Firestore job doc data
+let JOB_ID = null;    // Firestore job doc id
+let CHAT_ID = null;   // Realtime DB chat path
+let msgListener = null;
+let responseTimer = null;
+let disputeAllowed = false;
+let agreedAmount = 0;
+
+// ── TOAST ──────────────────────────────────────────────────────────────────
+function toast(type, msg){
+  const w = document.getElementById('toastWrap');
+  const t = document.createElement('div');
+  t.className = `toast ${type}`;
+  t.innerHTML = `<span>${type==='success'?'✅':type==='error'?'❌':'ℹ️'}</span><span>${msg}</span>`;
+  w.appendChild(t);
+  setTimeout(()=>{t.style.opacity='0';t.style.transition='opacity .3s';setTimeout(()=>t.remove(),300);},3500);
+}
+
+// ── PHONE FILTER (STEP 2) ──────────────────────────────────────────────────
+function containsBlocked(text){
+  const t = text.toLowerCase().replace(/\s/g,'');
+  // phone numbers
+  const phoneRx = /(\b0[78][01]\d{8}\b|\+234\d{10}|\b(\d[\s\-_•]{0,2}){11}\b|zero\s*eight|08\d{8})/i;
+  // links
+  const linkRx = /(https?:\/\/|www\.|wa\.me|whatsapp|t\.me|telegram|@\w+\.com)/i;
+  return phoneRx.test(text) || linkRx.test(text);
+}
+
+// ── INIT ────────────────────────────────────────────────────────────────────
+function initChat(){
+  const name = document.getElementById('initName').value.trim();
+  const role = document.getElementById('initRole').value;
+  const uid  = document.getElementById('initUID').value.trim();
+  if(!name||!uid){ toast('error','Please fill in all fields'); return; }
+  ME = { uid, name, role, email: FIX9JA_EMAIL };
+  if(role==='artisan'){
+    // Artisan enters their own ID and waits for chats
+    ARTISAN = { uid, name, trade:'Artisan', phone:'', rating:5 };
+    showArtisanWaiting();
+  } else {
+    showArtisanList();
+  }
+}
+
+// ── ARTISAN LIST ────────────────────────────────────────────────────────────
+async function showArtisanList(){
+  document.getElementById('artisanListWrap').style.display='block';
+  const body = document.getElementById('artisanListBody');
+  body.innerHTML = '<div class="loading-msg"><div class="spinner-sm"></div>Finding artisans...</div>';
+  try{
+    const snap = await db.collection('providers').where('kycStatus','==','verified').limit(10).get();
+    if(snap.empty){
+      // Show demo artisans
+      body.innerHTML = buildDemoArtisans();
+      return;
+    }
+    const cards = [];
+    snap.forEach(d=>{
+      const a = d.data();
+      const init = (a.fullName||a.name||'?').split(' ').map(n=>n[0]).join('').toUpperCase().slice(0,2);
+      const stars = '★'.repeat(Math.round(a.rating||5));
+      cards.push(`<div class="art-card" onclick="selectArtisan('${d.id}','${(a.fullName||a.name||'Artisan').replace(/'/g,"\\'")}','${a.trade||a.skill||'Service'}','${a.phone||''}',${+(a.rating||5)})">
+        <div class="art-av">${init}</div>
+        <div><div class="art-nm">${a.fullName||a.name||'Artisan'}</div><div class="art-trade">${a.trade||a.skill||'Service'}</div></div>
+        <div class="art-rating">${stars} ${+(a.rating||5).toFixed(1)}</div>
+      </div>`);
+    });
+    body.innerHTML = cards.join('');
+  } catch(e){
+    body.innerHTML = buildDemoArtisans();
+  }
+}
+
+function buildDemoArtisans(){
+  const demos = [
+    {id:'demo1',name:'Musa Aliyu',trade:'Electrician',rating:4.8},
+    {id:'demo2',name:'Tunde Kola',trade:'Plumber',rating:4.5},
+    {id:'demo3',name:'Emeka Nze',trade:'Carpenter',rating:4.9},
+    {id:'demo4',name:'Bello Sani',trade:'Painter',rating:4.3},
+  ];
+  return demos.map(a=>{
+    const init = a.name.split(' ').map(n=>n[0]).join('');
+    return `<div class="art-card" onclick="selectArtisan('${a.id}','${a.name}','${a.trade}','',${a.rating})">
+      <div class="art-av">${init}</div>
+      <div><div class="art-nm">${a.name}</div><div class="art-trade">${a.trade}</div></div>
+      <div class="art-rating">${'★'.repeat(Math.floor(a.rating))} ${a.rating}</div>
+    </div>`;
+  }).join('');
+}
+
+async function selectArtisan(uid,name,trade,phone,rating){
+  if(!ME){ toast('error','Please fill in your details first'); return; }
+  ARTISAN = { uid, name, trade, phone, rating };
+  await openChatWith(uid, name, trade);
+}
+
+// ── ARTISAN WAITING (when artisan role logs in) ─────────────────────────────
+function showArtisanWaiting(){
+  document.getElementById('initScreen').style.display='none';
+  document.getElementById('chatScreen').style.display='block';
+  document.getElementById('chatName').textContent = 'Waiting for a homeowner...';
+  document.getElementById('chatTrade').textContent = ME.name+' • '+ME.role;
+  document.getElementById('chatAvatar').textContent = ME.name[0];
+  document.getElementById('quoteTrigger').classList.add('show');
+  document.getElementById('chatWrap').innerHTML='<div class="loading-msg">Waiting for homeowners to start a chat with you...</div>';
+  // Listen for incoming chats
+  listenForIncomingChats();
+}
+
+function listenForIncomingChats(){
+  // Listen to chats where this artisan is involved
+  db.collection('jobs').where('artisanId','==',ME.uid).where('status','==','open').limit(1)
+    .onSnapshot(snap=>{
+      snap.forEach(d=>{
+        JOB_ID = d.id;
+        JOB = d.data();
+        JOB.id = d.id;
+        CHAT_ID = JOB.chatId;
+        const userName = JOB.userName||'User';
+        document.getElementById('chatName').textContent = userName+' is asking for help';
+        document.getElementById('chatAvatar').textContent = userName[0]||'U';
+        updateJobBar();
+        loadMessages();
+        toast('info','New chat from '+userName+'!');
+      });
+    });
+}
+
+// ── OPEN CHAT ───────────────────────────────────────────────────────────────
+async function openChatWith(artisanId, artisanName, artisanTrade){
+  document.getElementById('initScreen').style.display='none';
+  document.getElementById('chatScreen').style.display='block';
+
+  // Set topbar
+  const init = artisanName.split(' ').map(n=>n[0]).join('').slice(0,2).toUpperCase();
+  document.getElementById('chatAvatar').textContent = init;
+  document.getElementById('chatName').textContent = artisanName;
+  document.getElementById('chatTrade').textContent = artisanTrade;
+
+  // Create or find job doc
+  try{
+    const existing = await db.collection('jobs')
+      .where('userId','==',ME.uid)
+      .where('artisanId','==',artisanId)
+      .where('status','in',['open','locked','paid'])
+      .limit(1).get();
+
+    if(!existing.empty){
+      JOB_ID = existing.docs[0].id;
+      JOB = existing.docs[0].data();
+      JOB.id = JOB_ID;
+      CHAT_ID = JOB.chatId;
+    } else {
+      // New job
+      CHAT_ID = `chat_${ME.uid}_${artisanId}_${Date.now()}`;
+      const jobRef = await db.collection('jobs').add({
+        userId: ME.uid,
+        userName: ME.name,
+        artisanId,
+        artisanName,
+        artisanTrade,
+        chatId: CHAT_ID,
+        status: 'open',
+        amount: 0,
+        requestSentAt: firebase.firestore.FieldValue.serverTimestamp(),
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+      });
+      JOB_ID = jobRef.id;
+      JOB = { userId:ME.uid,artisanId,artisanName,artisanTrade,chatId:CHAT_ID,status:'open',amount:0 };
+      // Start response timer (Step 3)
+      startResponseTimer();
+      addSystemMsg('Chat started. Describe what you need help with.');
+    }
+    updateJobBar();
+    loadMessages();
+    // Watch job status changes
+    watchJobStatus();
+  } catch(e){
+    console.warn('Job create error:', e.message);
+    // Offline mode — still open chat
+    CHAT_ID = `chat_${ME.uid||'guest'}_${artisanId}_${Date.now()}`;
+    JOB = { status:'open', amount:0 };
+    document.getElementById('chatWrap').innerHTML = '<div class="sys-msg">Chat ready (demo mode)</div>';
+  }
+}
+
+// ── JOB STATUS BAR ──────────────────────────────────────────────────────────
+function updateJobBar(){
+  if(!JOB) return;
+  const bar = document.getElementById('jobBar');
+  const st = JOB.status||'open';
+  bar.style.display = 'flex';
+  const amt = JOB.amount||JOB.agreedPrice||0;
+  document.getElementById('jobAmountDisplay').textContent = '₦'+(+amt).toLocaleString();
+  const badge = document.getElementById('jobStatusBadge');
+  badge.textContent = st.charAt(0).toUpperCase()+st.slice(1);
+  badge.className = 'job-bar-status js-'+st;
+  // Show/hide panels
+  showCorrectPanel(st, amt);
+}
+
+function showCorrectPanel(st, amt){
+  agreedAmount = +amt||0;
+  const isUser = ME?.role==='user';
+  const isArtisan = ME?.role==='artisan';
+
+  // Reset all panels
+  document.getElementById('payPanel').classList.remove('show');
+  document.getElementById('contactPanel').classList.remove('show');
+  document.getElementById('confirmPanel').classList.remove('show');
+  document.getElementById('lockedBanner').classList.remove('show');
+  document.getElementById('quotePanel').classList.remove('show');
+  document.getElementById('quoteTrigger').classList.remove('show');
+
+  if(st==='open'){
+    if(isArtisan) document.getElementById('quoteTrigger').classList.add('show');
+    lockInput(false);
+  } else if(st==='locked'){
+    document.getElementById('lockedBanner').classList.add('show');
+    if(isUser){
+      document.getElementById('payPanel').classList.add('show');
+      document.getElementById('payAmountDisplay').textContent = '₦'+(agreedAmount).toLocaleString();
+    }
+    lockInput(true);
+  } else if(st==='paid'){
+    if(isUser) document.getElementById('confirmPanel').classList.add('show');
+    if(isArtisan){
+      document.getElementById('contactPanel').classList.add('show');
+      document.getElementById('artisanPhoneDisplay').textContent = 'Job started ✓';
+    } else {
+      // Show artisan phone to user
+      const phone = ARTISAN?.phone||JOB?.artisanPhone||'Contact released';
+      document.getElementById('artisanPhoneDisplay').textContent = phone||'Check with artisan';
+      const callBtn = document.getElementById('callBtn');
+      callBtn.href = phone ? 'tel:'+phone : '#';
+      document.getElementById('contactPanel').classList.add('show');
+      document.getElementById('confirmPanel').classList.add('show');
+    }
+    lockInput(false);
+  } else if(st==='completed'){
+    // Show dispute link for 24hrs
+    if(isUser){
+      document.getElementById('confirmPanel').classList.add('show');
+      document.getElementById('disputeLink').style.display='block';
+    }
+    lockInput(false);
+  }
+}
+
+// ── RESPONSE TIMER (STEP 3) ──────────────────────────────────────────────────
+function startResponseTimer(){
+  clearTimeout(responseTimer);
+  responseTimer = setTimeout(()=>{
+    document.getElementById('timerAlert').classList.add('show');
+  }, 3*60*1000); // 3 minutes
+}
+function clearTimer(){ clearTimeout(responseTimer); document.getElementById('timerAlert').classList.remove('show'); }
+function goBackToList(){ document.getElementById('chatScreen').style.display='none'; document.getElementById('initScreen').style.display='flex'; showArtisanList(); }
+async function autoAssign(){
+  clearTimer();
+  toast('info','Finding nearest available artisans...');
+  document.getElementById('timerAlert').classList.remove('show');
+  addSystemMsg('Fix9ja is finding you the nearest available artisan...');
+  // In production: query nearby artisans and send FCM notifications
+  try{
+    const snap = await db.collection('providers').where('kycStatus','==','verified').limit(3).get();
+    if(!snap.empty){
+      const first = snap.docs[0];
+      const a = first.data();
+      toast('success','Artisan assigned! '+( a.fullName||'Artisan'));
+      addSystemMsg('✅ '+( a.fullName||'Artisan')+' ('+( a.trade||'Service')+') has been assigned to you.');
+    } else {
+      addSystemMsg('No artisans available right now. Please try again shortly.');
+    }
+  } catch(e){
+    addSystemMsg('Could not auto-assign. Please try picking manually.');
+  }
+}
+
+// ── WATCH JOB STATUS ────────────────────────────────────────────────────────
+function watchJobStatus(){
+  if(!JOB_ID) return;
+  db.collection('jobs').doc(JOB_ID).onSnapshot(snap=>{
+    if(!snap.exists) return;
+    JOB = snap.data();
+    JOB.id = snap.id;
+    updateJobBar();
+    // If status changed to paid, clear timer
+    if(JOB.status==='paid') clearTimer();
+  });
+}
+
+// ── REALTIME CHAT MESSAGES ──────────────────────────────────────────────────
+function loadMessages(){
+  if(!CHAT_ID) return;
+  const wrap = document.getElementById('chatWrap');
+  if(msgListener) msgListener(); // detach old listener
+  msgListener = rtdb.ref('chats/'+CHAT_ID+'/messages').orderByChild('ts').on('value', snap=>{
+    wrap.innerHTML = '';
+    if(!snap.exists()){
+      wrap.innerHTML = '<div class="sys-msg">Say hello to start the conversation</div>';
+      return;
+    }
+    snap.forEach(child=>{
+      const m = child.val();
+      renderMessage(m);
+    });
+    wrap.scrollTop = wrap.scrollHeight;
+    // First artisan reply — clear timer
+    if(ME?.role==='user' && snap.exists()){
+      snap.forEach(c=>{ if(c.val().senderType==='artisan') clearTimer(); });
+    }
+  });
+}
+
+function renderMessage(m){
+  const wrap = document.getElementById('chatWrap');
+  const isMe = m.senderId === ME?.uid;
+
+  if(m.type==='system'){
+    const el = document.createElement('div');
+    el.className = 'sys-msg';
+    el.textContent = m.text;
+    wrap.appendChild(el);
+    return;
+  }
+
+  if(m.type==='quote'){
+    const el = document.createElement('div');
+    el.className = 'quote-msg';
+    const accepted = m.accepted===true;
+    el.innerHTML = `
+      <div class="quote-label">💰 Quote from ${m.senderName||'Artisan'}</div>
+      <div class="quote-amount">₦${(+m.amount||0).toLocaleString()}</div>
+      <div class="quote-desc">${m.desc||''}</div>
+      ${!accepted && !isMe && ME?.role==='user' ? `
+      <div class="quote-btns">
+        <button class="q-btn q-accept" onclick="acceptQuote(${m.amount},'${m.desc||''}')">✓ Accept & Proceed</button>
+        <button class="q-btn q-decline" onclick="declineQuote()">Decline</button>
+      </div>` : accepted ? `<div style="color:var(--g2);font-size:12px;font-weight:700;margin-top:8px;">✓ Accepted — payment pending</div>` : ''}
+    `;
+    wrap.appendChild(el);
+    return;
+  }
+
+  const el = document.createElement('div');
+  el.className = 'msg '+(isMe?'me':'them');
+  const init = (m.senderName||'?')[0].toUpperCase();
+  const time = m.ts ? new Date(m.ts).toLocaleTimeString('en-NG',{hour:'2-digit',minute:'2-digit'}) : '';
+  el.innerHTML = `
+    <div class="msg-av">${init}</div>
+    <div class="msg-body">
+      <div class="msg-sender">${m.senderName||'User'}</div>
+      <div class="msg-bubble">${escHtml(m.text||'')}</div>
+      <div class="msg-time">${time}</div>
+    </div>
+  `;
+  wrap.appendChild(el);
+}
+
+function addSystemMsg(text){
+  if(!CHAT_ID) return;
+  rtdb.ref('chats/'+CHAT_ID+'/messages').push({
+    type:'system',text,ts:Date.now()
+  });
+}
+
+function escHtml(s){ const d=document.createElement('div');d.appendChild(document.createTextNode(s));return d.innerHTML; }
+
+// ── SEND MESSAGE ─────────────────────────────────────────────────────────────
+async function sendMessage(){
+  if(!ME){ toast('error','Please set up your profile first'); return; }
+  const input = document.getElementById('msgInput');
+  const text = input.value.trim();
+  if(!text) return;
+
+  // Step 2: Block phone/links
+  if(containsBlocked(text)){
+    toast('error','This information cannot be shared here. Please keep all communication within Fix9ja for your protection.');
+    return;
+  }
+
+  if(!CHAT_ID){
+    toast('error','No active chat. Please select an artisan first.');
+    return;
+  }
+
+  // Check job status — block if locked
+  if(JOB?.status==='locked'){
+    toast('info','Chat is locked. Complete payment to continue messaging.');
+    return;
+  }
+
+  input.value = '';
+  input.style.height = 'auto';
+
+  try{
+    await rtdb.ref('chats/'+CHAT_ID+'/messages').push({
+      senderId: ME.uid,
+      senderName: ME.name,
+      senderType: ME.role,
+      text,
+      type:'text',
+      ts: Date.now()
+    });
+  } catch(e){
+    toast('error','Could not send message. Check your connection.');
+    input.value = text;
+  }
+}
+
+function handleKey(e){ if(e.key==='Enter'&&!e.shiftKey){ e.preventDefault(); sendMessage(); } }
+function autoResize(el){ el.style.height='auto'; el.style.height=Math.min(el.scrollHeight,100)+'px'; }
+function lockInput(locked){
+  const input = document.getElementById('msgInput');
+  const btn = document.getElementById('sendBtn');
+  input.disabled = locked;
+  btn.disabled = locked;
+  input.placeholder = locked ? 'Complete payment to send messages' : 'Type a message...';
+}
+
+// ── QUOTE (STEP 3-4: ARTISAN SENDS QUOTE) ────────────────────────────────────
+function toggleQuotePanel(){ document.getElementById('quotePanel').classList.toggle('show'); }
+async function sendQuote(){
+  const amount = +document.getElementById('quoteAmountInput').value;
+  const desc = document.getElementById('quoteDescInput').value.trim();
+  if(!amount||amount<100){ toast('error','Enter a valid amount'); return; }
+  if(!CHAT_ID){ toast('error','No active chat'); return; }
+  try{
+    await rtdb.ref('chats/'+CHAT_ID+'/messages').push({
+      senderId: ME.uid,
+      senderName: ME.name,
+      senderType: 'artisan',
+      type: 'quote',
+      amount,
+      desc,
+      accepted: false,
+      ts: Date.now()
+    });
+    document.getElementById('quotePanel').classList.remove('show');
+    document.getElementById('quoteAmountInput').value='';
+    document.getElementById('quoteDescInput').value='';
+    toast('success','Quote sent to homeowner');
+  } catch(e){ toast('error','Could not send quote: '+e.message); }
+}
+
+// ── ACCEPT QUOTE (STEP 4: USER ACCEPTS) ──────────────────────────────────────
+async function acceptQuote(amount, desc){
+  agreedAmount = +amount;
+  toast('info','Accepted! Chat locked — proceed to payment.');
+  addSystemMsg('✅ Homeowner accepted the quote of ₦'+agreedAmount.toLocaleString()+'. Chat locked for payment.');
+  // Lock chat & update job
+  if(JOB_ID){
+    await db.collection('jobs').doc(JOB_ID).update({
+      status:'locked',
+      amount:agreedAmount,
+      agreedPrice:agreedAmount,
+      lockedAt:firebase.firestore.FieldValue.serverTimestamp()
+    });
+  }
+  JOB = {...(JOB||{}), status:'locked', amount:agreedAmount};
+  updateJobBar();
+}
+async function declineQuote(){
+  addSystemMsg('Quote declined. Artisan can send a new quote.');
+  toast('info','Quote declined');
+}
+
+// ── PAYMENT (STEP 5) ──────────────────────────────────────────────────────────
+function launchPayment(){
+  if(!agreedAmount){ toast('error','No amount set'); return; }
+  const userEmail = ME?.email || FIX9JA_EMAIL;
+  try{
+    const handler = PaystackPop.setup({
+      key: PAYSTACK_PK,
+      email: userEmail,
+      amount: Math.round(agreedAmount*100), // kobo
+      currency:'NGN',
+      ref:'FX9JA_JOB_'+JOB_ID+'_'+Date.now(),
+      metadata:{ jobId:JOB_ID, userId:ME?.uid, artisanId:ARTISAN?.uid||JOB?.artisanId },
+      callback: function(res){ onPaymentSuccess(res); },
+      onClose: function(){ toast('info','Payment cancelled'); }
+    });
+    handler.openIframe();
+  } catch(e){ toast('error','Payment error: '+e.message); }
+}
+
+async function onPaymentSuccess(res){
+  toast('success','Payment received! Contact info unlocked.');
+  addSystemMsg('✅ Payment confirmed. Job officially started!');
+  if(JOB_ID){
+    await db.collection('jobs').doc(JOB_ID).update({
+      status:'paid',
+      paystackRef:res.reference,
+      paidAt:firebase.firestore.FieldValue.serverTimestamp(),
+      artisanPhone: ARTISAN?.phone||''
+    });
+    // Notify artisan
+    const artisanId = ARTISAN?.uid||JOB?.artisanId;
+    if(artisanId){
+      await db.collection('notifications').add({
+        userId:artisanId,
+        title:'Payment Received 💰',
+        message:'A homeowner has paid ₦'+agreedAmount.toLocaleString()+' for your service. Please proceed with the job.',
+        read:false,
+        createdAt:firebase.firestore.FieldValue.serverTimestamp()
+      });
+    }
+    // Record transaction
+    await db.collection('transactions').add({
+      userId:ME?.uid,
+      type:'debit',
+      amount:agreedAmount,
+      description:'Job payment — '+( ARTISAN?.name||'Artisan'),
+      category:'job_payment',
+      jobId:JOB_ID,
+      paystackRef:res.reference,
+      status:'success',
+      createdAt:firebase.firestore.FieldValue.serverTimestamp()
+    });
+  }
+  JOB = {...(JOB||{}), status:'paid', artisanPhone:ARTISAN?.phone||''};
+  updateJobBar();
+}
+
+// ── CONFIRM JOB DONE (STEP 6) ─────────────────────────────────────────────────
+async function confirmJobDone(){
+  if(!JOB_ID){ toast('error','No active job'); return; }
+  if(!confirm('Confirm that the job is completed?')) return;
+  try{
+    await db.collection('jobs').doc(JOB_ID).update({
+      status:'completed',
+      completedAt:firebase.firestore.FieldValue.serverTimestamp()
+    });
+    addSystemMsg('✅ Job confirmed complete. Artisan payment will be released by admin shortly.');
+    toast('success','Job confirmed! Admin will release payment to artisan.');
+    // Show dispute link for 24hrs
+    disputeAllowed = true;
+    document.getElementById('disputeLink').style.display='block';
+    JOB = {...(JOB||{}), status:'completed'};
+    updateJobBar();
+    // Notify admin via notification collection
+    await db.collection('notifications').add({
+      userId:'admin',
+      title:'Job Completed — Release Pending',
+      message:'Job '+JOB_ID+' completed. ₦'+Math.round(agreedAmount*0.85).toLocaleString()+' ready for artisan.',
+      read:false,
+      createdAt:firebase.firestore.FieldValue.serverTimestamp()
+    });
+  } catch(e){ toast('error','Error: '+e.message); }
+}
+
+// ── DISPUTE (STEP 8) ──────────────────────────────────────────────────────────
+function openDisputeForm(){ document.getElementById('disputeForm').classList.toggle('show'); }
+async function submitDispute(){
+  const reason = document.getElementById('disputeReason').value;
+  const desc = document.getElementById('disputeDesc').value.trim();
+  if(!reason){ toast('error','Please select a reason'); return; }
+  if(!desc||desc.length<10){ toast('error','Please describe the issue (min 10 characters)'); return; }
+  try{
+    await db.collection('disputes').add({
+      userId:ME?.uid,
+      userName:ME?.name,
+      artisanId:ARTISAN?.uid||JOB?.artisanId,
+      artisanName:ARTISAN?.name||JOB?.artisanName,
+      jobId:JOB_ID,
+      jobAmount:agreedAmount,
+      reason,
+      description:desc,
+      status:'open',
+      createdAt:firebase.firestore.FieldValue.serverTimestamp()
+    });
+    await db.collection('jobs').doc(JOB_ID).update({ status:'disputed' });
+    await db.collection('notifications').add({
+      userId:'admin',
+      title:'New Dispute 🚩',
+      message:'Dispute raised on job #'+JOB_ID+'. Review required.',
+      read:false,
+      createdAt:firebase.firestore.FieldValue.serverTimestamp()
+    });
+    addSystemMsg('⚠️ Dispute raised. Our team will review within 24 hours. Artisan payment is frozen.');
+    document.getElementById('disputeForm').classList.remove('show');
+    toast('info','Dispute submitted. We will respond within 24 hours.');
+    JOB = {...(JOB||{}), status:'disputed'};
+    updateJobBar();
+  } catch(e){ toast('error','Error submitting dispute: '+e.message); }
+}
+
+// ── NAVIGATION ────────────────────────────────────────────────────────────────
+function goBack(){
+  if(msgListener){ msgListener(); msgListener=null; }
+  clearTimer();
+  document.getElementById('chatScreen').style.display='none';
+  document.getElementById('initScreen').style.display='flex';
+  document.getElementById('artisanListWrap').style.display='block';
+  document.getElementById('chatWrap').innerHTML='<div class="loading-msg">Select an artisan to start</div>';
+}
+</script>
+</body>
+</html>
