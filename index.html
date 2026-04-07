@@ -11,7 +11,7 @@
 <meta name="apple-mobile-web-app-title" content="Fix9ja"/>
 <link rel="manifest" href="data:application/json,{&quot;name&quot;:&quot;Fix9ja&quot;,&quot;short_name&quot;:&quot;Fix9ja&quot;,&quot;start_url&quot;:&quot;/&quot;,&quot;display&quot;:&quot;standalone&quot;,&quot;background_color&quot;:&quot;%230d5c34&quot;,&quot;theme_color&quot;:&quot;%230d5c34&quot;,&quot;description&quot;:&quot;Nigeria home services super-app&quot;}"/>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%230d5c34'/%3E%3Cstop offset='100%25' style='stop-color:%232d9e62'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='400' rx='88' fill='url(%23bg)'/%3E%3Crect x='108' y='208' width='184' height='134' rx='8' fill='white'/%3E%3Cpolygon points='200,88,94,214,306,214' fill='white'/%3E%3Crect x='170' y='266' width='60' height='76' rx='9' fill='%231a7a4a'/%3E%3Crect x='122' y='230' width='38' height='34' rx='6' fill='%231a7a4a' opacity='0.9'/%3E%3Crect x='240' y='230' width='38' height='34' rx='6' fill='%231a7a4a' opacity='0.9'/%3E%3Ccircle cx='290' cy='290' r='52' fill='%23f5a623'/%3E%3Cg transform='translate(290,290) rotate(-40)'%3E%3Crect x='-7' y='4' width='14' height='52' rx='6' fill='white'/%3E%3Ccircle cx='0' cy='0' r='18' fill='white'/%3E%3Ccircle cx='0' cy='0' r='10' fill='%23f5a623'/%3E%3C/g%3E%3Ccircle cx='200' cy='86' r='11' fill='%23f5a623'/%3E%3C/svg%3E"/>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Fraunces:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=Fraunces:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet"/>
 
 <!-- ══════════════════════════════════════════
      FIREBASE SDK  (v9 compat build)
@@ -37,7 +37,7 @@
   --sh-md:0 6px 28px rgba(13,92,52,.12);
   --sh-lg:0 16px 56px rgba(13,92,52,.16);
   --r:14px;--r-sm:10px;
-  --font:'Outfit',sans-serif;--serif:'Fraunces',serif;
+  --font:'DM Sans',sans-serif;--serif:'Fraunces',serif;
   --nav-w:260px;--topbar-h:56px;--mob-nav:60px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -71,14 +71,14 @@ input,select,textarea{font-family:var(--font);outline:none;}
 .su-name{font-size:.85rem;font-weight:700;}
 .su-role{font-size:.68rem;color:var(--ink3);}
 .main-area{flex:1;margin-left:var(--nav-w);display:flex;flex-direction:column;min-height:100vh;}
-.topbar{height:var(--topbar-h);background:var(--white);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 20px;gap:12px;position:sticky;top:0;z-index:150;}
-.topbar-title{font-family:var(--serif);font-size:1.3rem;font-weight:700;flex:1;}
-.topbar-search{flex:1;max-width:380px;position:relative;}
-.topbar-search input{width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:9px 14px 9px 38px;font-size:.85rem;color:var(--ink);transition:border-color .2s;}
+.topbar{height:var(--topbar-h);background:var(--white);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 12px;gap:8px;position:sticky;top:0;z-index:150;width:100%;box-sizing:border-box;overflow:hidden;min-width:0;}
+.topbar-title{font-size:.88rem;flex:1;color:var(--ink3);font-family:var(--font);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;}
+.topbar-search{flex:1;max-width:280px;position:relative;min-width:0;}
+.topbar-search input{width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:8px 12px 8px 34px;font-size:.82rem;color:var(--ink);transition:border-color .2s;}
 .topbar-search input:focus{border-color:var(--g2);}
-.topbar-search .s-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--ink3);}
-.topbar-actions{display:flex;align-items:center;gap:8px;}
-.icon-btn{width:38px;height:38px;border-radius:10px;background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;transition:all .18s;position:relative;}
+.topbar-search .s-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--ink3);font-size:.85rem;}
+.topbar-actions{display:flex;align-items:center;gap:6px;flex-shrink:0;}
+.icon-btn{width:34px;height:34px;border-radius:9px;background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.9rem;transition:all .18s;position:relative;flex-shrink:0;}
 .icon-btn:hover{background:var(--g4);border-color:var(--g5);}
 .badge-dot{position:absolute;top:7px;right:7px;width:7px;height:7px;background:var(--red);border-radius:50%;border:1.5px solid var(--white);}
 .page-content{padding:16px;flex:1;display:none;animation:fadeUp .3s ease both;}
@@ -89,8 +89,8 @@ input,select,textarea{font-family:var(--font);outline:none;}
    COMMON COMPONENTS
 ════════════════════════════════════════ */
 .page-header{margin-bottom:24px;}
-.page-header h1{font-family:var(--serif);font-size:1.8rem;font-weight:900;color:var(--ink);letter-spacing:-.5px;}
-.page-header p{font-size:.88rem;color:var(--ink3);margin-top:4px;}
+.page-header h1{font-family:var(--serif);font-size:1.4rem;font-weight:900;color:var(--ink);letter-spacing:-.3px;}
+.page-header p{font-size:.82rem;color:var(--ink3);margin-top:4px;}
 .card{background:var(--white);border-radius:var(--r);padding:20px;box-shadow:var(--sh);}
 .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px;}
 .stat-card{background:var(--white);border-radius:var(--r);padding:20px;box-shadow:var(--sh);border-left:4px solid var(--g3);}
@@ -98,8 +98,8 @@ input,select,textarea{font-family:var(--font);outline:none;}
 .stat-card.red{border-color:var(--red);}
 .stat-card.blue{border-color:var(--blue);}
 .sc-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--ink3);}
-.sc-value{font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--ink);margin:6px 0 4px;letter-spacing:-.5px;}
-.sc-delta{font-size:.78rem;font-weight:600;}
+.sc-value{font-family:var(--serif);font-size:1.5rem;font-weight:700;color:var(--ink);margin:6px 0 4px;letter-spacing:-.3px;}
+.sc-delta{font-size:.72rem;font-weight:600;}
 .sc-delta.up{color:var(--g2);}
 .sc-delta.dn{color:var(--red);}
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
@@ -157,7 +157,7 @@ input,select,textarea{font-family:var(--font);outline:none;}
 .wallet-hero{background:linear-gradient(135deg,var(--g1) 0%,var(--g2) 60%,var(--g3) 100%);border-radius:var(--r);padding:28px;color:#fff;position:relative;overflow:hidden;}
 .wallet-hero::before{content:'';position:absolute;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.06);top:-60px;right:-40px;}
 .wh-label{font-size:.75rem;font-weight:600;opacity:.75;text-transform:uppercase;letter-spacing:.1em;}
-.wh-amount{font-family:var(--serif);font-size:2.8rem;font-weight:900;letter-spacing:-1.5px;margin:6px 0;}
+.wh-amount{font-family:var(--serif);font-size:2.2rem;font-weight:900;letter-spacing:-1px;margin:6px 0;}
 .wh-actions{display:flex;gap:12px;margin-top:20px;position:relative;z-index:1;}
 .wh-action{display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;}
 .wh-circle{width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:background .2s;}
@@ -335,61 +335,68 @@ select option{background:var(--white);}
 @media(max-width:1100px){.stat-grid{grid-template-columns:repeat(2,1fr);}.grid-3{grid-template-columns:1fr 1fr;}}
 @media(max-width:768px){
   :root{--nav-w:0px;--topbar-h:52px;}
-  body{font-size:13px;}
+  body{font-size:14px;}
   .sidebar{transform:translateX(-260px);width:260px;position:fixed;top:0;bottom:0;z-index:250;}
   .sidebar.open{transform:translateX(0);}
-  .main-area{margin-left:0;}
-  .topbar{padding:0 12px;}
+  .main-area{margin-left:0;width:100%;max-width:100vw;}
+  .topbar{padding:0 10px;gap:6px;width:100%;max-width:100vw;overflow:hidden;}
   .topbar-search{display:none;}
+  .topbar-title{font-size:.82rem;color:var(--ink2);}
   .mob-menu-btn{display:flex;}
   .mobile-nav{display:flex;}
-  .page-content{padding:10px 10px 72px 10px;}
-  .stat-grid{grid-template-columns:1fr 1fr;gap:8px;}
+  .page-content{padding:12px 12px 80px 12px;width:100%;max-width:100vw;overflow-x:hidden;}
+  .stat-grid{grid-template-columns:1fr 1fr;gap:10px;}
   .grid-2,.grid-3{grid-template-columns:1fr;}
-  .sc-value{font-size:1.3rem;}
-  .sc-label{font-size:.68rem;}
-  .stat-card{padding:12px;}
+  .sc-value{font-size:1.4rem;}
+  .sc-label{font-size:.7rem;}
+  .stat-card{padding:14px 12px;}
   .auth-left{display:none;}
   .auth-right{padding:16px 12px;}
   .auth-box{padding:20px 16px;}
-  .wh-amount{font-size:1.6rem;}
+  .wh-amount{font-size:1.8rem;}
   .wh-actions{gap:8px;}
-  .wh-circle{width:38px;height:38px;font-size:1rem;}
+  .wh-circle{width:42px;height:42px;font-size:1rem;}
   .wh-lbl{font-size:.62rem;}
-  #toast-container{bottom:72px;right:12px;left:12px;align-items:center;}
-  .page-header h1{font-size:1.3rem;}
-  .page-header p{font-size:.78rem;}
-  .section-hdr h2{font-size:.95rem;}
-  .card{padding:14px;}
-  .btn{font-size:.8rem;padding:8px 14px;}
-  .btn-lg{padding:11px 18px;font-size:.88rem;}
+  #toast-container{bottom:80px;right:12px;left:12px;align-items:center;}
+  .page-header h1{font-size:1.4rem;}
+  .page-header p{font-size:.8rem;}
+  .section-hdr h2{font-size:1rem;}
+  .card{padding:14px;width:100%;}
+  .btn{font-size:.82rem;padding:9px 14px;}
+  .btn-lg{padding:12px 18px;font-size:.9rem;}
   .modal{padding:20px 16px;}
   .modal-title{font-size:1.1rem;}
-  .util-card{padding:12px 8px;}
-  .uc-icon{font-size:1.4rem;}
-  .uc-name{font-size:.72rem;}
+  .util-card{padding:14px 8px;}
+  .uc-icon{font-size:1.5rem;}
+  .uc-name{font-size:.74rem;}
   .profile-hero-card{padding:18px;gap:14px;}
-  .ph-name{font-size:1.1rem;}
-  .ph-role{font-size:.75rem;}
-  .ph-avatar{width:56px;height:56px;font-size:1.5rem;}
+  .ph-name{font-size:1.15rem;}
+  .ph-role{font-size:.78rem;}
+  .ph-avatar{width:58px;height:58px;font-size:1.5rem;}
+  .icon-btn{width:36px;height:36px;}
+  .nav-badge{font-size:.65rem;padding:2px 6px;}
 }
 @media(max-width:480px){
-  body{font-size:12.5px;}
+  body{font-size:13.5px;}
   .stat-grid{grid-template-columns:1fr 1fr;gap:8px;}
   .user-type-grid{grid-template-columns:1fr 1fr;}
   .splash-cta-row{flex-direction:column;align-items:center;}
-  .util-card{padding:10px 6px;}
+  .util-card{padding:12px 6px;}
   .uc-icon{font-size:1.3rem;}
   .uc-name{font-size:.68rem;}
-  .wh-amount{font-size:1.4rem;}
+  .wh-amount{font-size:1.5rem;}
   .card{padding:12px;}
+  .page-content{padding:10px 10px 80px 10px;}
 }
 
 /* Prevent horizontal overflow globally */
 *{box-sizing:border-box;}
+html,body{overflow-x:hidden;max-width:100vw;}
 img,video,iframe{max-width:100%;}
-.page-content{overflow-x:hidden;max-width:100%;}
-input,select,textarea{max-width:100%;width:100%;}
+.page-content{overflow-x:hidden;max-width:100%;width:100%;}
+input,select,textarea{max-width:100%;box-sizing:border-box;}
+.main-area{overflow-x:hidden;min-width:0;max-width:100%;width:100%;}
+.card{min-width:0;max-width:100%;}
 /* Sidebar must not cover content */
 .sidebar{z-index:250;}
 .sidebar-overlay{z-index:240;}
@@ -959,23 +966,19 @@ body:not(:has(#page-app[style*="flex"])) .mobile-nav { display:none !important; 
     <div class="topbar">
       <button class="mob-menu-btn" onclick="toggleSidebar()">☰</button>
       <!-- Fix9ja Logo — embedded SVG, works on all hosting -->
-      <div style="display:flex;align-items:center;gap:7px;flex-shrink:0;margin-right:6px;">
-        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <div style="display:flex;align-items:center;gap:6px;flex-shrink:0;">
+        <svg width="30" height="30" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="17" cy="17" r="17" fill="#0d5c34"/>
           <circle cx="17" cy="17" r="15" fill="#e8f5ee" opacity="0.15"/>
-          <!-- Gear icon (the 9) -->
           <circle cx="19" cy="15" r="4.5" fill="#f5a623" opacity="0.95"/>
           <circle cx="19" cy="15" r="2.5" fill="#0d5c34"/>
-          <!-- F and X letters -->
           <text x="6" y="21" font-family="Arial Black,sans-serif" font-size="10" font-weight="900" fill="white" letter-spacing="-0.5">Fix</text>
-          <!-- ja text -->
           <text x="22" y="23" font-family="Arial,sans-serif" font-size="8" font-weight="700" fill="white">ja</text>
-          <!-- Swoosh line -->
           <path d="M 6 24 Q 17 29 28 22" stroke="#f5a623" stroke-width="1.5" fill="none" stroke-linecap="round"/>
         </svg>
-        <span style="font-family:var(--serif);font-size:1.05rem;font-weight:900;color:var(--g1);letter-spacing:-.5px;">Fix<span style="color:var(--amber);">9</span>ja</span>
+        <span style="font-family:var(--serif);font-size:1rem;font-weight:900;color:var(--g1);letter-spacing:-.5px;white-space:nowrap;">Fix<span style="color:var(--amber);">9</span>ja</span>
       </div>
-      <div class="topbar-title" id="topbar-title" style="font-size:.88rem;flex:1;color:var(--ink3);font-family:var(--font);font-weight:500;">Dashboard</div>
+      <div class="topbar-title" id="topbar-title">Dashboard</div>
       <div class="topbar-search"><span class="s-icon">🔍</span><input type="text" id="main-search" placeholder="Search services, providers…" onkeydown="if(event.key==='Enter')doSearch(this.value)"></div>
       <div class="topbar-actions">
         <div class="icon-btn" onclick="goPage('notifications')"><span>🔔</span><div class="badge-dot" id="notif-dot"></div></div>
@@ -1412,7 +1415,12 @@ body:not(:has(#page-app[style*="flex"])) .mobile-nav { display:none !important; 
             <div class="section-hdr"><h2>Support</h2></div>
             <div class="setting-item" onclick="openWhatsApp()" style="cursor:pointer;"><div class="si-icon-box" style="background:var(--g4);">❓</div><div class="si-info"><div class="si-title">Help Centre & FAQs</div><div class="si-desc">Chat with us on WhatsApp</div></div><div style="color:var(--g2);font-size:1.2rem;">›</div></div>
             <div class="setting-item" onclick="openWhatsApp()" style="cursor:pointer;"><div class="si-icon-box" style="background:var(--blue-lt);">💬</div><div class="si-info"><div class="si-title">Live Chat Support</div><div class="si-desc">We typically reply in minutes</div></div><div style="color:var(--g2);font-size:1.2rem;">›</div></div>
-            <div class="setting-item"><div class="si-icon-box" style="background:var(--bg);">ℹ️</div><div class="si-info"><div class="si-title">About Fix9ja</div><div class="si-desc">Version 1.0.0</div></div><div style="color:var(--ink3);">›</div></div>
+            <div class="setting-item" onclick="window.open('mailto:info@fix9ja.com')" style="cursor:pointer;"><div class="si-icon-box" style="background:var(--g4);">✉️</div><div class="si-info"><div class="si-title">Email Support</div><div class="si-desc"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="30595e565f70565948095a511e535f5d">[email&#160;protected]</a></div></div><div style="color:var(--g2);font-size:1.2rem;">›</div></div>
+            <div class="setting-item" onclick="window.open('https://adokam.github.io/fix9ja/privacy-policy.html','_blank')" style="cursor:pointer;"><div class="si-icon-box" style="background:var(--blue-lt);">🔐</div><div class="si-info"><div class="si-title">Privacy Policy</div><div class="si-desc">How we protect your data</div></div><div style="color:var(--g2);font-size:1.2rem;">›</div></div>
+            <div class="setting-item" onclick="window.open('https://adokam.github.io/fix9ja/terms-of-service.html','_blank')" style="cursor:pointer;"><div class="si-icon-box" style="background:var(--amber-lt);">📄</div><div class="si-info"><div class="si-title">Terms of Service</div><div class="si-desc">Our platform rules & agreements</div></div><div style="color:var(--g2);font-size:1.2rem;">›</div></div>
+            <div class="setting-item"><div class="si-icon-box" style="background:var(--bg);">ℹ️</div><div class="si-info"><div class="si-title">About Fix9ja</div><div class="si-desc">Version 1.0.0 · Fix9ja Technologies Ltd</div></div><div style="color:var(--ink3);">›</div></div>
+            <!-- Hidden admin button — only visible to admin UID -->
+            <div class="setting-item" id="settings-admin-btn" style="display:none;cursor:pointer;background:var(--amber-lt);border-radius:10px;margin-top:8px;" onclick="window.open('https://adokam.github.io/fix9ja/admin.html','_blank')"><div class="si-icon-box" style="background:var(--amber-lt);">👑</div><div class="si-info"><div class="si-title" style="color:#9a6c0a;font-weight:700;">Admin Dashboard</div><div class="si-desc">Platform management</div></div><div style="color:var(--amber);font-size:1.2rem;">›</div></div>
           </div>
         </div>
       </div>
@@ -1475,18 +1483,15 @@ body:not(:has(#page-app[style*="flex"])) .mobile-nav { display:none !important; 
         <div style="font-size:3rem;margin-bottom:12px;">👑</div>
         <div style="font-family:var(--serif);font-size:1.4rem;font-weight:900;margin-bottom:8px;">Fix9ja Admin Console</div>
         <div style="font-size:.84rem;opacity:.8;margin-bottom:20px;line-height:1.6;">The admin dashboard is a separate secure portal.<br>Open it in a new tab to manage users, providers, KYC, withdrawals and more.</div>
-        <button onclick="window.open('fix9ja-admin.html','_blank')" style="background:#C89B3C;color:#fff;border:none;border-radius:12px;padding:14px 28px;font-family:inherit;font-size:.95rem;font-weight:800;cursor:pointer;width:100%;max-width:300px;">Open Admin Dashboard →</button>
+        <button onclick="window.open('https://adokam.github.io/fix9ja/admin.html','_blank')" style="background:#C89B3C;color:#fff;border:none;border-radius:12px;padding:14px 28px;font-family:inherit;font-size:.95rem;font-weight:800;cursor:pointer;width:100%;max-width:300px;">Open Admin Dashboard →</button>
         <div style="margin-top:14px;font-size:.72rem;opacity:.5;">Only accessible to authorized administrators</div>
       </div>
     </div><!-- /pc-admin -->
 
-  </div><!-- /main-area -->
-
-  <!-- MOBILE BOTTOM NAV -->
-  <!-- ─────────────────────────────
-       CHAT PAGE
-  ───────────────────────────────── -->
-  <div class="page-content" id="pc-chat">
+    <!-- ─────────────────────────────
+         CHAT PAGE
+    ───────────────────────────────── -->
+    <div class="page-content" id="pc-chat">
     <!-- Chat list view -->
     <div id="chat-list-view">
       <div class="page-header">
@@ -1598,7 +1603,9 @@ body:not(:has(#page-app[style*="flex"])) .mobile-nav { display:none !important; 
         <button onclick="inAppSend()" style="width:38px;height:38px;border-radius:50%;background:var(--g1);border:none;cursor:pointer;font-size:1rem;color:#fff;flex-shrink:0;">➤</button>
       </div>
     </div>
-  </div>
+  </div><!-- /pc-chat -->
+
+  </div><!-- /main-area -->
 
   <div class="mobile-nav" id="mobile-nav" style="display:none;">
     <div class="mn-item active" id="mn-dashboard" onclick="goPage('dashboard')"><div class="mn-icon">🏠</div><div class="mn-dot"></div><div class="mn-label">Home</div></div>
@@ -1612,7 +1619,7 @@ body:not(:has(#page-app[style*="flex"])) .mobile-nav { display:none !important; 
 <!-- ══════════════════════════════════════
      FIREBASE CONFIG + APP LOGIC
 ══════════════════════════════════════ -->
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* ══════════════════════════════════════════════════
    🔥 STEP 1: PASTE YOUR FIREBASE CONFIG HERE
    Go to Firebase Console → Project Settings →
@@ -1707,27 +1714,36 @@ const PAYSTACK_SK = 'sk_test_3305f9ea593071844552d5b1f03e67d76e378373';
 /* ══ SESSION TIMEOUT — 20 minutes inactivity ══ */
 let sessionTimer = null;
 const SESSION_TIMEOUT = 20 * 60 * 1000; // 20 minutes
+let lastActivity = Date.now();
 
 function resetSessionTimer() {
+  lastActivity = Date.now();
   clearTimeout(sessionTimer);
-  sessionTimer = setTimeout(() => {
+  sessionTimer = setTimeout(async () => {
     if(currentUser) {
-      showToast('Session expired due to inactivity. Please sign in again.', 'info');
-      doLogout();
+      showToast('You have been logged out due to 20 minutes of inactivity.', 'info');
+      await doLogout();
     }
   }, SESSION_TIMEOUT);
 }
 
 function startSessionTracking() {
-  ['click','keypress','mousemove','touchstart','scroll'].forEach(evt => {
+  ['click','keydown','touchstart','scroll'].forEach(evt => {
     document.addEventListener(evt, resetSessionTimer, { passive: true });
   });
   resetSessionTimer();
+  // Also check every minute in case timers are unreliable
+  setInterval(() => {
+    if(currentUser && (Date.now() - lastActivity) > SESSION_TIMEOUT) {
+      showToast('Session expired. Please sign in again.', 'info');
+      doLogout();
+    }
+  }, 60 * 1000);
 }
 
 function stopSessionTracking() {
   clearTimeout(sessionTimer);
-  ['click','keypress','mousemove','touchstart','scroll'].forEach(evt => {
+  ['click','keydown','touchstart','scroll'].forEach(evt => {
     document.removeEventListener(evt, resetSessionTimer);
   });
 }
@@ -2056,9 +2072,11 @@ async function enterApp() {
 }
 
 function checkAdminAccess() {
-  const isAdmin = userProfile?.role === 'admin';
+  const isAdmin = userProfile?.role === 'admin' || currentUser?.uid === ADMIN_UID;
   const adminNav = document.getElementById('nav-admin');
+  const adminSettingsBtn = document.getElementById('settings-admin-btn');
   if(adminNav) adminNav.style.display = isAdmin ? 'flex' : 'none';
+  if(adminSettingsBtn) adminSettingsBtn.style.display = isAdmin ? 'flex' : 'none';
 }
 
 function verifyAdminPassword() {
@@ -2493,28 +2511,29 @@ async function submitProviderApp() {
   if(!phone || phone.length < 7) { showFieldError('pa-phone','err-pa-phone'); valid=false; }
   if(!valid) return;
   setLoading('pa-submit-btn', true, 'Submit & Complete KYC →');
-  await new Promise(r=>setTimeout(r,900));
   try {
     if(firebaseReady && currentUser && currentUser.uid !== 'demo') {
       await fbDb.collection('provider_applications').add({
         userId: currentUser.uid,
         name: userProfile?.fullName || currentUser?.displayName || 'Unknown',
-        email: currentUser?.email,
+        email: currentUser?.email || '',
         phone, skill, experience: exp, state, location, bio,
         status: 'pending_kyc',
         submittedAt: firebase.firestore.FieldValue.serverTimestamp()
       });
-      // Mark user as provider applicant
-      await fbDb.collection('users').doc(currentUser.uid).update({ role: 'provider_pending', providerPhone: phone, providerState: state });
-      userProfile = { ...userProfile, role: 'provider_pending', providerPhone: phone, providerState: state };
+      try {
+        await fbDb.collection('users').doc(currentUser.uid).update({ role: 'provider_pending', providerPhone: phone, providerState: state });
+        userProfile = { ...userProfile, role: 'provider_pending', providerPhone: phone, providerState: state };
+      } catch(updateErr){ console.warn('Profile update skipped:', updateErr); }
     }
     setLoading('pa-submit-btn', false, 'Submit & Complete KYC →');
     showFormSuccess('pa-success','pa-success-msg','Application saved! Please complete your KYC verification now.');
     addNotification('Provider Application Received 🔧','Your application has been received. Please complete KYC verification to proceed.');
     setTimeout(()=>{ closeModal('provider-apply'); openModal('kyc'); }, 1800);
   } catch(e) {
+    console.error('Provider app error:', e);
     setLoading('pa-submit-btn', false, 'Submit & Complete KYC →');
-    showToast('Could not submit application. Please try again.','error');
+    showToast('Could not submit application: ' + (e.message || 'Please check your connection and try again.'), 'error');
   }
 }
 
@@ -2721,6 +2740,8 @@ function checkMeter() {
 ══════════════════════════════════════════════════ */
 const VTPASS_BASE = 'https://sandbox.vtpass.com/api';
 const VTPASS_USER = 'danielameh1027@gmail.com';
+// Your Firebase UID — only this account sees admin features
+const ADMIN_UID = 'REPLACE_WITH_YOUR_FIREBASE_UID';
 const VTPASS_PASS = '12345@Adokam';
 const VTPASS_PK   = 'PK_1222b1e1f1796f928447776a371fb6f522d61b249d5';
 const VTPASS_SK   = 'SK_42908843ab392f40a9d1d7cda5096387ca5e3379db7';
@@ -3205,12 +3226,39 @@ async function applyReferralBonus(referralCode, newUserId) {
     if(snap.empty) return;
     const referrer = snap.docs[0];
     const referrerId = referrer.id;
-    // Credit both users ₦500
-    await fbDb.collection('wallets').doc(referrerId).update({ balance: firebase.firestore.FieldValue.increment(500) });
-    await fbDb.collection('wallets').doc(newUserId).update({ balance: firebase.firestore.FieldValue.increment(500) });
-    await fbDb.collection('referrals').add({ referrerId, referredId: newUserId, bonus: 500, createdAt: firebase.firestore.FieldValue.serverTimestamp() });
-    await fbDb.collection('notifications').add({ userId: referrerId, title: 'Referral Bonus! 🎁', message: 'A friend signed up using your referral code. ₦500 has been added to your wallet!', read: false, createdAt: firebase.firestore.FieldValue.serverTimestamp() });
-  } catch(e){ console.warn('Referral error:', e); }
+    if(referrerId === newUserId) return; // cannot refer yourself
+    // Check not already referred
+    const alreadyReferred = await fbDb.collection('referrals').where('referredId','==',newUserId).limit(1).get();
+    if(!alreadyReferred.empty) return;
+    // Credit referrer ₦500 using set+merge (works with our Firestore rules)
+    await fbDb.collection('wallets').doc(referrerId).set({
+      balance: firebase.firestore.FieldValue.increment(500),
+      totalFunded: firebase.firestore.FieldValue.increment(500),
+      updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+    }, { merge: true });
+    // Credit new user ₦500
+    await fbDb.collection('wallets').doc(newUserId).set({
+      balance: firebase.firestore.FieldValue.increment(500),
+      totalFunded: firebase.firestore.FieldValue.increment(500),
+      updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+    }, { merge: true });
+    // Record referral
+    await fbDb.collection('referrals').add({
+      referrerId,
+      referrerName: referrer.data().fullName || '',
+      referredId: newUserId,
+      bonus: 500,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+    // Notify referrer
+    await fbDb.collection('notifications').add({
+      userId: referrerId,
+      title: 'Referral Bonus! 🎁',
+      message: 'A friend signed up using your referral code. ₦500 has been added to your wallet!',
+      read: false,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+  } catch(e){ console.warn('Referral error:', e.code, e.message); }
 }
 
 /* ══════════════════════════════════════════════════
@@ -4633,11 +4681,4 @@ async function loadChatList() {
 
 // Load chats when entering chat page — hooked into goPage via page-specific loaders
 function closeChatActiveIfOpen() {
-  const activeView = document.getElementById('chat-active-view');
-  const listView = document.getElementById('chat-list-view');
-  if(activeView) activeView.style.display = 'none';
-  if(listView) listView.style.display = 'block';
-}
-</script>
-</body>
-</html>
+  const activeView = document.g
