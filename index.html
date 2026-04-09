@@ -1658,19 +1658,18 @@ async function initFirebase() {
       const notice = document.getElementById('firebase-notice');
       if (notice) notice.style.display = 'none';
 
-      // Keep user logged in across refreshes
-      await fbAuth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+      // Keep user logged in only for current browser session (not forever)
+      await fbAuth.setPersistence(firebase.auth.Auth.Persistence.SESSION);
 
       // Listen for auth state
       fbAuth.onAuthStateChanged(async (user) => {
         const loader = document.getElementById('page-loading');
         if(user) {
-          // User is logged in — go straight to app
-          if(!currentUser) {
-            currentUser = user;
-            await loadUserProfile(user.uid);
-          }
+          currentUser = user;
+          // Hide loader immediately — don't wait for profile
           if(loader) loader.style.display = 'none';
+          // Load profile in background then enter app
+          await loadUserProfile(user.uid);
           await enterApp();
         } else {
           // No user — show landing page
@@ -1688,7 +1687,7 @@ async function initFirebase() {
   }
 }
 
-// Run after page loads — 4 second hard fallback
+// Run after page loads — 3 second hard fallback in case Firebase hangs
 window.addEventListener('load', () => {
   initFirebase();
   setTimeout(() => {
@@ -1698,7 +1697,7 @@ window.addEventListener('load', () => {
       if(!currentUser) showPage('page-landing');
       else enterApp();
     }
-  }, 4000);
+  }, 3000);
 });
 
 /* ══════════════════════════════════════════════════
@@ -2064,14 +2063,19 @@ async function enterApp() {
   showPage('page-app');
   startSessionTracking();
   updateUserUI();
-  if(firebaseReady && currentUser && currentUser.uid !== 'demo') {
-    await loadWallet();
-    await loadTransactions();
-    await loadNotifications();
-    checkAdminAccess();
-  }
   goPage('dashboard');
   renderAll();
+  // Load data in background — don't block app entry
+  if(firebaseReady && currentUser && currentUser.uid !== 'demo') {
+    Promise.allSettled([
+      loadWallet(),
+      loadTransactions(),
+      loadNotifications()
+    ]).then(() => {
+      checkAdminAccess();
+      renderAll();
+    });
+  }
 }
 
 function checkAdminAccess() {
@@ -2204,9 +2208,11 @@ async function loadAdminOverview() {
 async function loadUserProfile(uid) {
   if(!firebaseReady) return;
   try {
-    const doc = await fbDb.collection('users').doc(uid).get();
+    const timeout = new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 5000));
+    const fetch   = fbDb.collection('users').doc(uid).get();
+    const doc = await Promise.race([fetch, timeout]);
     if(doc.exists) userProfile = doc.data();
-  } catch(e){}
+  } catch(e){ console.warn('loadUserProfile:', e.message); }
 }
 
 async function loadWallet() {
