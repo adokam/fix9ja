@@ -71,8 +71,8 @@ input,select,textarea{font-family:var(--font);outline:none;}
 .su-name{font-size:.85rem;font-weight:700;}
 .su-role{font-size:.68rem;color:var(--ink3);}
 .main-area{flex:1;margin-left:var(--nav-w);display:flex;flex-direction:column;min-height:100vh;}
-.topbar{height:var(--topbar-h);background:var(--white);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 12px;gap:8px;position:sticky;top:0;z-index:150;width:100%;box-sizing:border-box;overflow:hidden;min-width:0;}
-.topbar-title{font-size:.88rem;flex:1;color:var(--ink3);font-family:var(--font);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;}
+.topbar{height:var(--topbar-h);background:var(--white);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 12px;gap:8px;position:sticky;top:0;z-index:150;width:100%;box-sizing:border-box;overflow:hidden;}
+.topbar-title{font-family:var(--serif);font-size:1rem;font-weight:700;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;}
 .topbar-search{flex:1;max-width:280px;position:relative;min-width:0;}
 .topbar-search input{width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:8px 12px 8px 34px;font-size:.82rem;color:var(--ink);transition:border-color .2s;}
 .topbar-search input:focus{border-color:var(--g2);}
@@ -338,13 +338,12 @@ select option{background:var(--white);}
   body{font-size:14px;}
   .sidebar{transform:translateX(-260px);width:260px;position:fixed;top:0;bottom:0;z-index:250;}
   .sidebar.open{transform:translateX(0);}
-  .main-area{margin-left:0;width:100%;max-width:100vw;}
-  .topbar{padding:0 10px;gap:6px;width:100%;max-width:100vw;overflow:hidden;}
+  .main-area{margin-left:0 !important;width:100% !important;max-width:100vw !important;}
+  .topbar{padding:0 10px;gap:6px;}
   .topbar-search{display:none;}
-  .topbar-title{font-size:.82rem;color:var(--ink2);}
   .mob-menu-btn{display:flex;}
   .mobile-nav{display:flex;}
-  .page-content{padding:12px 12px 80px 12px;width:100%;max-width:100vw;overflow-x:hidden;}
+  .page-content{padding:12px 12px 80px 12px;}
   .stat-grid{grid-template-columns:1fr 1fr;gap:10px;}
   .grid-2,.grid-3{grid-template-columns:1fr;}
   .sc-value{font-size:1.4rem;}
@@ -352,7 +351,7 @@ select option{background:var(--white);}
   .stat-card{padding:14px 12px;}
   .auth-left{display:none;}
   .auth-right{padding:16px 12px;}
-  .auth-box{padding:20px 16px;}
+  .auth-box{padding:24px 16px;}
   .wh-amount{font-size:1.8rem;}
   .wh-actions{gap:8px;}
   .wh-circle{width:42px;height:42px;font-size:1rem;}
@@ -361,8 +360,8 @@ select option{background:var(--white);}
   .page-header h1{font-size:1.4rem;}
   .page-header p{font-size:.8rem;}
   .section-hdr h2{font-size:1rem;}
-  .card{padding:14px;width:100%;}
-  .btn{font-size:.82rem;padding:9px 14px;}
+  .card{padding:14px;}
+  .btn{font-size:.84rem;padding:9px 14px;}
   .btn-lg{padding:12px 18px;font-size:.9rem;}
   .modal{padding:20px 16px;}
   .modal-title{font-size:1.1rem;}
@@ -374,19 +373,17 @@ select option{background:var(--white);}
   .ph-role{font-size:.78rem;}
   .ph-avatar{width:58px;height:58px;font-size:1.5rem;}
   .icon-btn{width:36px;height:36px;}
-  .nav-badge{font-size:.65rem;padding:2px 6px;}
 }
 @media(max-width:480px){
-  body{font-size:13.5px;}
+  body{font-size:12.5px;}
   .stat-grid{grid-template-columns:1fr 1fr;gap:8px;}
   .user-type-grid{grid-template-columns:1fr 1fr;}
   .splash-cta-row{flex-direction:column;align-items:center;}
-  .util-card{padding:12px 6px;}
+  .util-card{padding:10px 6px;}
   .uc-icon{font-size:1.3rem;}
   .uc-name{font-size:.68rem;}
-  .wh-amount{font-size:1.5rem;}
+  .wh-amount{font-size:1.4rem;}
   .card{padding:12px;}
-  .page-content{padding:10px 10px 80px 10px;}
 }
 
 /* Prevent horizontal overflow globally */
@@ -397,6 +394,7 @@ img,video,iframe{max-width:100%;}
 input,select,textarea{max-width:100%;box-sizing:border-box;}
 .main-area{overflow-x:hidden;min-width:0;max-width:100%;width:100%;}
 .card{min-width:0;max-width:100%;}
+.app-shell{overflow-x:hidden;}
 /* Sidebar must not cover content */
 .sidebar{z-index:250;}
 .sidebar-overlay{z-index:240;}
@@ -934,7 +932,7 @@ body:not(:has(#page-app[style*="flex"])) .mobile-nav { display:none !important; 
 <!-- ══════════════════════════════════════
      PAGE: APP SHELL
 ══════════════════════════════════════ -->
-<div id="page-app" style="display:none;min-height:100vh;">
+<div id="page-app" class="app-shell" style="display:none;min-height:100vh;">
   <!-- SIDEBAR -->
   <div class="sidebar" id="sidebar">
     <div class="sidebar-logo"><div class="logo-mark">Fix<span>9ja</span></div><div class="logo-tag">Your home, sorted.</div></div>
@@ -966,19 +964,23 @@ body:not(:has(#page-app[style*="flex"])) .mobile-nav { display:none !important; 
     <div class="topbar">
       <button class="mob-menu-btn" onclick="toggleSidebar()">☰</button>
       <!-- Fix9ja Logo — embedded SVG, works on all hosting -->
-      <div style="display:flex;align-items:center;gap:6px;flex-shrink:0;">
-        <svg width="30" height="30" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <div style="display:flex;align-items:center;gap:7px;flex-shrink:0;margin-right:6px;">
+        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="17" cy="17" r="17" fill="#0d5c34"/>
           <circle cx="17" cy="17" r="15" fill="#e8f5ee" opacity="0.15"/>
+          <!-- Gear icon (the 9) -->
           <circle cx="19" cy="15" r="4.5" fill="#f5a623" opacity="0.95"/>
           <circle cx="19" cy="15" r="2.5" fill="#0d5c34"/>
+          <!-- F and X letters -->
           <text x="6" y="21" font-family="Arial Black,sans-serif" font-size="10" font-weight="900" fill="white" letter-spacing="-0.5">Fix</text>
+          <!-- ja text -->
           <text x="22" y="23" font-family="Arial,sans-serif" font-size="8" font-weight="700" fill="white">ja</text>
+          <!-- Swoosh line -->
           <path d="M 6 24 Q 17 29 28 22" stroke="#f5a623" stroke-width="1.5" fill="none" stroke-linecap="round"/>
         </svg>
-        <span style="font-family:var(--serif);font-size:1rem;font-weight:900;color:var(--g1);letter-spacing:-.5px;white-space:nowrap;">Fix<span style="color:var(--amber);">9</span>ja</span>
+        <span style="font-family:var(--serif);font-size:1.05rem;font-weight:900;color:var(--g1);letter-spacing:-.5px;">Fix<span style="color:var(--amber);">9</span>ja</span>
       </div>
-      <div class="topbar-title" id="topbar-title">Dashboard</div>
+      <div class="topbar-title" id="topbar-title" style="font-size:.88rem;flex:1;color:var(--ink3);font-family:var(--font);font-weight:500;">Dashboard</div>
       <div class="topbar-search"><span class="s-icon">🔍</span><input type="text" id="main-search" placeholder="Search services, providers…" onkeydown="if(event.key==='Enter')doSearch(this.value)"></div>
       <div class="topbar-actions">
         <div class="icon-btn" onclick="goPage('notifications')"><span>🔔</span><div class="badge-dot" id="notif-dot"></div></div>
@@ -1415,7 +1417,7 @@ body:not(:has(#page-app[style*="flex"])) .mobile-nav { display:none !important; 
             <div class="section-hdr"><h2>Support</h2></div>
             <div class="setting-item" onclick="openWhatsApp()" style="cursor:pointer;"><div class="si-icon-box" style="background:var(--g4);">❓</div><div class="si-info"><div class="si-title">Help Centre & FAQs</div><div class="si-desc">Chat with us on WhatsApp</div></div><div style="color:var(--g2);font-size:1.2rem;">›</div></div>
             <div class="setting-item" onclick="openWhatsApp()" style="cursor:pointer;"><div class="si-icon-box" style="background:var(--blue-lt);">💬</div><div class="si-info"><div class="si-title">Live Chat Support</div><div class="si-desc">We typically reply in minutes</div></div><div style="color:var(--g2);font-size:1.2rem;">›</div></div>
-            <div class="setting-item" onclick="window.open('mailto:info@fix9ja.com')" style="cursor:pointer;"><div class="si-icon-box" style="background:var(--g4);">✉️</div><div class="si-info"><div class="si-title">Email Support</div><div class="si-desc"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="30595e565f70565948095a511e535f5d">[email&#160;protected]</a></div></div><div style="color:var(--g2);font-size:1.2rem;">›</div></div>
+            <div class="setting-item" onclick="window.open('mailto:info@fix9ja.com')" style="cursor:pointer;"><div class="si-icon-box" style="background:var(--g4);">✉️</div><div class="si-info"><div class="si-title">Email Support</div><div class="si-desc"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="21484f474e61474859184b400f424e4c">[email&#160;protected]</a></div></div><div style="color:var(--g2);font-size:1.2rem;">›</div></div>
             <div class="setting-item" onclick="window.open('https://adokam.github.io/fix9ja/privacy-policy.html','_blank')" style="cursor:pointer;"><div class="si-icon-box" style="background:var(--blue-lt);">🔐</div><div class="si-info"><div class="si-title">Privacy Policy</div><div class="si-desc">How we protect your data</div></div><div style="color:var(--g2);font-size:1.2rem;">›</div></div>
             <div class="setting-item" onclick="window.open('https://adokam.github.io/fix9ja/terms-of-service.html','_blank')" style="cursor:pointer;"><div class="si-icon-box" style="background:var(--amber-lt);">📄</div><div class="si-info"><div class="si-title">Terms of Service</div><div class="si-desc">Our platform rules & agreements</div></div><div style="color:var(--g2);font-size:1.2rem;">›</div></div>
             <div class="setting-item"><div class="si-icon-box" style="background:var(--bg);">ℹ️</div><div class="si-info"><div class="si-title">About Fix9ja</div><div class="si-desc">Version 1.0.0 · Fix9ja Technologies Ltd</div></div><div style="color:var(--ink3);">›</div></div>
@@ -1492,12 +1494,12 @@ body:not(:has(#page-app[style*="flex"])) .mobile-nav { display:none !important; 
          CHAT PAGE
     ───────────────────────────────── -->
     <div class="page-content" id="pc-chat">
-    <!-- Chat list view -->
-    <div id="chat-list-view">
-      <div class="page-header">
-        <h1>My Chats</h1>
-        <p>Your conversations with artisans</p>
-      </div>
+      <!-- Chat list view -->
+      <div id="chat-list-view">
+        <div class="page-header">
+          <h1>My Chats</h1>
+          <p>Your conversations with artisans</p>
+        </div>
       <div id="chat-list-body">
         <div style="text-align:center;padding:40px 20px;color:var(--ink3);">
           <div style="font-size:3rem;margin-bottom:12px;">💬</div>
@@ -1603,7 +1605,8 @@ body:not(:has(#page-app[style*="flex"])) .mobile-nav { display:none !important; 
         <button onclick="inAppSend()" style="width:38px;height:38px;border-radius:50%;background:var(--g1);border:none;cursor:pointer;font-size:1rem;color:#fff;flex-shrink:0;">➤</button>
       </div>
     </div>
-  </div><!-- /pc-chat -->
+  </div>
+    </div><!-- /pc-chat -->
 
   </div><!-- /main-area -->
 
@@ -2522,9 +2525,13 @@ async function submitProviderApp() {
         submittedAt: firebase.firestore.FieldValue.serverTimestamp()
       });
       try {
-        await fbDb.collection('users').doc(currentUser.uid).update({ role: 'provider_pending', providerPhone: phone, providerState: state });
+        await fbDb.collection('users').doc(currentUser.uid).update({
+          role: 'provider_pending', providerPhone: phone, providerState: state
+        });
         userProfile = { ...userProfile, role: 'provider_pending', providerPhone: phone, providerState: state };
-      } catch(updateErr){ console.warn('Profile update skipped:', updateErr); }
+      } catch(updateErr) {
+        console.warn('Profile role update skipped:', updateErr.message);
+      }
     }
     setLoading('pa-submit-btn', false, 'Submit & Complete KYC →');
     showFormSuccess('pa-success','pa-success-msg','Application saved! Please complete your KYC verification now.');
@@ -2533,7 +2540,7 @@ async function submitProviderApp() {
   } catch(e) {
     console.error('Provider app error:', e);
     setLoading('pa-submit-btn', false, 'Submit & Complete KYC →');
-    showToast('Could not submit application: ' + (e.message || 'Please check your connection and try again.'), 'error');
+    showToast('Could not submit: ' + (e.message || 'Check your connection and try again.'), 'error');
   }
 }
 
