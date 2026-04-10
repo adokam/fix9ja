@@ -70,7 +70,7 @@ input,select,textarea{font-family:var(--font);outline:none;}
 .su-avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--g2),var(--g3));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem;flex-shrink:0;}
 .su-name{font-size:.85rem;font-weight:700;}
 .su-role{font-size:.68rem;color:var(--ink3);}
-.main-area{flex:1;margin-left:var(--nav-w);display:flex;flex-direction:column;min-height:100vh;}
+.main-area{flex:1;margin-left:var(--nav-w);display:flex;flex-direction:column;min-height:100vh;overflow-x:hidden;}
 .topbar{height:var(--topbar-h);background:var(--white);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 12px;gap:8px;position:sticky;top:0;z-index:150;width:100%;box-sizing:border-box;overflow:hidden;}
 .topbar-title{font-family:var(--serif);font-size:1rem;font-weight:700;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;}
 .topbar-search{flex:1;max-width:280px;position:relative;min-width:0;}
@@ -335,44 +335,43 @@ select option{background:var(--white);}
 @media(max-width:1100px){.stat-grid{grid-template-columns:repeat(2,1fr);}.grid-3{grid-template-columns:1fr 1fr;}}
 @media(max-width:768px){
   :root{--nav-w:0px;--topbar-h:52px;}
-  body{font-size:14px;}
+  body{font-size:13px;}
   .sidebar{transform:translateX(-260px);width:260px;position:fixed;top:0;bottom:0;z-index:250;}
   .sidebar.open{transform:translateX(0);}
   .main-area{margin-left:0 !important;width:100% !important;max-width:100vw !important;}
-  .topbar{padding:0 10px;gap:6px;}
+  .topbar{padding:0 12px;}
   .topbar-search{display:none;}
   .mob-menu-btn{display:flex;}
   .mobile-nav{display:flex;}
-  .page-content{padding:12px 12px 80px 12px;}
-  .stat-grid{grid-template-columns:1fr 1fr;gap:10px;}
+  .page-content{padding:10px 10px 72px 10px;}
+  .stat-grid{grid-template-columns:1fr 1fr;gap:8px;}
   .grid-2,.grid-3{grid-template-columns:1fr;}
-  .sc-value{font-size:1.4rem;}
-  .sc-label{font-size:.7rem;}
-  .stat-card{padding:14px 12px;}
+  .sc-value{font-size:1.3rem;}
+  .sc-label{font-size:.68rem;}
+  .stat-card{padding:12px;}
   .auth-left{display:none;}
   .auth-right{padding:16px 12px;}
-  .auth-box{padding:24px 16px;}
-  .wh-amount{font-size:1.8rem;}
+  .auth-box{padding:20px 16px;}
+  .wh-amount{font-size:1.6rem;}
   .wh-actions{gap:8px;}
-  .wh-circle{width:42px;height:42px;font-size:1rem;}
+  .wh-circle{width:38px;height:38px;font-size:1rem;}
   .wh-lbl{font-size:.62rem;}
-  #toast-container{bottom:80px;right:12px;left:12px;align-items:center;}
-  .page-header h1{font-size:1.4rem;}
-  .page-header p{font-size:.8rem;}
-  .section-hdr h2{font-size:1rem;}
+  #toast-container{bottom:72px;right:12px;left:12px;align-items:center;}
+  .page-header h1{font-size:1.3rem;}
+  .page-header p{font-size:.78rem;}
+  .section-hdr h2{font-size:.95rem;}
   .card{padding:14px;}
-  .btn{font-size:.84rem;padding:9px 14px;}
-  .btn-lg{padding:12px 18px;font-size:.9rem;}
+  .btn{font-size:.8rem;padding:8px 14px;}
+  .btn-lg{padding:11px 18px;font-size:.88rem;}
   .modal{padding:20px 16px;}
   .modal-title{font-size:1.1rem;}
-  .util-card{padding:14px 8px;}
-  .uc-icon{font-size:1.5rem;}
-  .uc-name{font-size:.74rem;}
+  .util-card{padding:12px 8px;}
+  .uc-icon{font-size:1.4rem;}
+  .uc-name{font-size:.72rem;}
   .profile-hero-card{padding:18px;gap:14px;}
-  .ph-name{font-size:1.15rem;}
-  .ph-role{font-size:.78rem;}
-  .ph-avatar{width:58px;height:58px;font-size:1.5rem;}
-  .icon-btn{width:36px;height:36px;}
+  .ph-name{font-size:1.1rem;}
+  .ph-role{font-size:.75rem;}
+  .ph-avatar{width:56px;height:56px;font-size:1.5rem;}
 }
 @media(max-width:480px){
   body{font-size:12.5px;}
@@ -388,13 +387,11 @@ select option{background:var(--white);}
 
 /* Prevent horizontal overflow globally */
 *{box-sizing:border-box;}
-html,body{overflow-x:hidden;max-width:100vw;}
 img,video,iframe{max-width:100%;}
 .page-content{overflow-x:hidden;max-width:100%;width:100%;}
 input,select,textarea{max-width:100%;box-sizing:border-box;}
-.main-area{overflow-x:hidden;min-width:0;max-width:100%;width:100%;}
+.page-content{overflow-x:hidden;max-width:100%;width:100%;}
 .card{min-width:0;max-width:100%;}
-.app-shell{overflow-x:hidden;}
 /* Sidebar must not cover content */
 .sidebar{z-index:250;}
 .sidebar-overlay{z-index:240;}
@@ -913,12 +910,13 @@ body:not(:has(#page-app[style*="flex"])) .mobile-nav { display:none !important; 
             <label class="form-label">Referral Code <span style="font-size:.72rem;color:var(--ink3);">(optional — get ₦500 bonus!)</span></label>
             <div class="input-wrap"><span class="ii">🎁</span><input type="text" id="su-referral" placeholder="Enter referral code if you have one" style="text-transform:uppercase;"></div>
           </div>
-          <div style="background:var(--g4);border-radius:10px;padding:12px 16px;margin-bottom:16px;font-size:.78rem;color:var(--g1);line-height:1.6;">
-            🔒 By creating an account you agree to Fix9ja's <span style="text-decoration:underline;cursor:pointer;font-weight:700;" onclick="openModal('terms')">Terms & Conditions</span>
-          </div>
           <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:20px;">
             <input type="checkbox" id="tc-agree" style="width:18px;height:18px;margin-top:2px;accent-color:var(--g2);">
-            <label for="tc-agree" style="font-size:.82rem;color:var(--ink2);cursor:pointer;line-height:1.5;">I have read and agree to the <span style="color:var(--g2);font-weight:700;cursor:pointer;" onclick="openModal('terms')">Terms & Conditions</span></label>
+            <label for="tc-agree" style="font-size:.82rem;color:var(--ink2);cursor:pointer;line-height:1.6;">I agree to Fix9ja's
+              <span style="color:var(--g2);font-weight:700;cursor:pointer;" onclick="event.preventDefault();window.open('terms-of-service.html','_blank')">Terms of Service</span>
+              and
+              <span style="color:var(--g2);font-weight:700;cursor:pointer;" onclick="event.preventDefault();window.open('privacy-policy.html','_blank')">Privacy Policy</span>
+            </label>
           </div>
           <div class="field-error" id="err-tc-agree" style="margin-bottom:12px;">⚠ You must agree to the Terms & Conditions</div>
           <button class="btn btn-primary btn-full btn-lg" id="signup-btn" onclick="doSignup()">Create Account</button>
@@ -932,7 +930,7 @@ body:not(:has(#page-app[style*="flex"])) .mobile-nav { display:none !important; 
 <!-- ══════════════════════════════════════
      PAGE: APP SHELL
 ══════════════════════════════════════ -->
-<div id="page-app" class="app-shell" style="display:none;min-height:100vh;">
+<div id="page-app" style="display:none;min-height:100vh;">
   <!-- SIDEBAR -->
   <div class="sidebar" id="sidebar">
     <div class="sidebar-logo"><div class="logo-mark">Fix<span>9ja</span></div><div class="logo-tag">Your home, sorted.</div></div>
@@ -1417,12 +1415,12 @@ body:not(:has(#page-app[style*="flex"])) .mobile-nav { display:none !important; 
             <div class="section-hdr"><h2>Support</h2></div>
             <div class="setting-item" onclick="openWhatsApp()" style="cursor:pointer;"><div class="si-icon-box" style="background:var(--g4);">❓</div><div class="si-info"><div class="si-title">Help Centre & FAQs</div><div class="si-desc">Chat with us on WhatsApp</div></div><div style="color:var(--g2);font-size:1.2rem;">›</div></div>
             <div class="setting-item" onclick="openWhatsApp()" style="cursor:pointer;"><div class="si-icon-box" style="background:var(--blue-lt);">💬</div><div class="si-info"><div class="si-title">Live Chat Support</div><div class="si-desc">We typically reply in minutes</div></div><div style="color:var(--g2);font-size:1.2rem;">›</div></div>
-            <div class="setting-item" onclick="window.open('mailto:info@fix9ja.com')" style="cursor:pointer;"><div class="si-icon-box" style="background:var(--g4);">✉️</div><div class="si-info"><div class="si-title">Email Support</div><div class="si-desc"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="21484f474e61474859184b400f424e4c">[email&#160;protected]</a></div></div><div style="color:var(--g2);font-size:1.2rem;">›</div></div>
-            <div class="setting-item" onclick="window.open('https://adokam.github.io/fix9ja/privacy-policy.html','_blank')" style="cursor:pointer;"><div class="si-icon-box" style="background:var(--blue-lt);">🔐</div><div class="si-info"><div class="si-title">Privacy Policy</div><div class="si-desc">How we protect your data</div></div><div style="color:var(--g2);font-size:1.2rem;">›</div></div>
-            <div class="setting-item" onclick="window.open('https://adokam.github.io/fix9ja/terms-of-service.html','_blank')" style="cursor:pointer;"><div class="si-icon-box" style="background:var(--amber-lt);">📄</div><div class="si-info"><div class="si-title">Terms of Service</div><div class="si-desc">Our platform rules & agreements</div></div><div style="color:var(--g2);font-size:1.2rem;">›</div></div>
+            <div class="setting-item" onclick="window.open('mailto:info@fix9ja.com')" style="cursor:pointer;"><div class="si-icon-box" style="background:var(--g4);">✉️</div><div class="si-info"><div class="si-title">Email Support</div><div class="si-desc"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cba2a5ada48bada2b3f2a1aae5a8a4a6">[email&#160;protected]</a></div></div><div style="color:var(--g2);font-size:1.2rem;">›</div></div>
+            <div class="setting-item" onclick="window.open('privacy-policy.html','_blank')" style="cursor:pointer;"><div class="si-icon-box" style="background:var(--blue-lt);">🔐</div><div class="si-info"><div class="si-title">Privacy Policy</div><div class="si-desc">How we protect your data</div></div><div style="color:var(--g2);font-size:1.2rem;">›</div></div>
+            <div class="setting-item" onclick="window.open('terms-of-service.html','_blank')" style="cursor:pointer;"><div class="si-icon-box" style="background:var(--amber-lt);">📄</div><div class="si-info"><div class="si-title">Terms of Service</div><div class="si-desc">Our platform rules & agreements</div></div><div style="color:var(--g2);font-size:1.2rem;">›</div></div>
             <div class="setting-item"><div class="si-icon-box" style="background:var(--bg);">ℹ️</div><div class="si-info"><div class="si-title">About Fix9ja</div><div class="si-desc">Version 1.0.0 · Fix9ja Technologies Ltd</div></div><div style="color:var(--ink3);">›</div></div>
             <!-- Hidden admin button — only visible to admin UID -->
-            <div class="setting-item" id="settings-admin-btn" style="display:none;cursor:pointer;background:var(--amber-lt);border-radius:10px;margin-top:8px;" onclick="window.open('https://adokam.github.io/fix9ja/admin.html','_blank')"><div class="si-icon-box" style="background:var(--amber-lt);">👑</div><div class="si-info"><div class="si-title" style="color:#9a6c0a;font-weight:700;">Admin Dashboard</div><div class="si-desc">Platform management</div></div><div style="color:var(--amber);font-size:1.2rem;">›</div></div>
+            <div class="setting-item" id="settings-admin-btn" style="display:none;cursor:pointer;background:var(--amber-lt);border-radius:10px;margin-top:8px;" onclick="window.open('admin.html','_blank')"><div class="si-icon-box" style="background:var(--amber-lt);">👑</div><div class="si-info"><div class="si-title" style="color:#9a6c0a;font-weight:700;">Admin Dashboard</div><div class="si-desc">Platform management</div></div><div style="color:var(--amber);font-size:1.2rem;">›</div></div>
           </div>
         </div>
       </div>
@@ -1485,21 +1483,24 @@ body:not(:has(#page-app[style*="flex"])) .mobile-nav { display:none !important; 
         <div style="font-size:3rem;margin-bottom:12px;">👑</div>
         <div style="font-family:var(--serif);font-size:1.4rem;font-weight:900;margin-bottom:8px;">Fix9ja Admin Console</div>
         <div style="font-size:.84rem;opacity:.8;margin-bottom:20px;line-height:1.6;">The admin dashboard is a separate secure portal.<br>Open it in a new tab to manage users, providers, KYC, withdrawals and more.</div>
-        <button onclick="window.open('https://adokam.github.io/fix9ja/admin.html','_blank')" style="background:#C89B3C;color:#fff;border:none;border-radius:12px;padding:14px 28px;font-family:inherit;font-size:.95rem;font-weight:800;cursor:pointer;width:100%;max-width:300px;">Open Admin Dashboard →</button>
+        <button onclick="window.open('admin.html','_blank')" style="background:#C89B3C;color:#fff;border:none;border-radius:12px;padding:14px 28px;font-family:inherit;font-size:.95rem;font-weight:800;cursor:pointer;width:100%;max-width:300px;">Open Admin Dashboard →</button>
         <div style="margin-top:14px;font-size:.72rem;opacity:.5;">Only accessible to authorized administrators</div>
       </div>
     </div><!-- /pc-admin -->
 
-    <!-- ─────────────────────────────
-         CHAT PAGE
-    ───────────────────────────────── -->
-    <div class="page-content" id="pc-chat">
-      <!-- Chat list view -->
-      <div id="chat-list-view">
-        <div class="page-header">
-          <h1>My Chats</h1>
-          <p>Your conversations with artisans</p>
-        </div>
+  </div><!-- /main-area -->
+
+  <!-- MOBILE BOTTOM NAV -->
+  <!-- ─────────────────────────────
+       CHAT PAGE
+  ───────────────────────────────── -->
+  <div class="page-content" id="pc-chat">
+    <!-- Chat list view -->
+    <div id="chat-list-view">
+      <div class="page-header">
+        <h1>My Chats</h1>
+        <p>Your conversations with artisans</p>
+      </div>
       <div id="chat-list-body">
         <div style="text-align:center;padding:40px 20px;color:var(--ink3);">
           <div style="font-size:3rem;margin-bottom:12px;">💬</div>
@@ -1606,9 +1607,6 @@ body:not(:has(#page-app[style*="flex"])) .mobile-nav { display:none !important; 
       </div>
     </div>
   </div>
-    </div><!-- /pc-chat -->
-
-  </div><!-- /main-area -->
 
   <div class="mobile-nav" id="mobile-nav" style="display:none;">
     <div class="mn-item active" id="mn-dashboard" onclick="goPage('dashboard')"><div class="mn-icon">🏠</div><div class="mn-dot"></div><div class="mn-label">Home</div></div>
@@ -1658,18 +1656,19 @@ async function initFirebase() {
       const notice = document.getElementById('firebase-notice');
       if (notice) notice.style.display = 'none';
 
-      // Keep user logged in only for current browser session (not forever)
-      await fbAuth.setPersistence(firebase.auth.Auth.Persistence.SESSION);
+      // Keep user logged in across refreshes
+      await fbAuth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 
       // Listen for auth state
       fbAuth.onAuthStateChanged(async (user) => {
         const loader = document.getElementById('page-loading');
         if(user) {
-          currentUser = user;
-          // Hide loader immediately — don't wait for profile
+          // User is logged in — go straight to app
+          if(!currentUser) {
+            currentUser = user;
+            await loadUserProfile(user.uid);
+          }
           if(loader) loader.style.display = 'none';
-          // Load profile in background then enter app
-          await loadUserProfile(user.uid);
           await enterApp();
         } else {
           // No user — show landing page
@@ -1687,7 +1686,7 @@ async function initFirebase() {
   }
 }
 
-// Run after page loads — 3 second hard fallback in case Firebase hangs
+// Run after page loads — 2.5 second hard fallback
 window.addEventListener('load', () => {
   initFirebase();
   setTimeout(() => {
@@ -1697,7 +1696,7 @@ window.addEventListener('load', () => {
       if(!currentUser) showPage('page-landing');
       else enterApp();
     }
-  }, 3000);
+  }, 2500);
 });
 
 /* ══════════════════════════════════════════════════
@@ -2065,16 +2064,12 @@ async function enterApp() {
   updateUserUI();
   goPage('dashboard');
   renderAll();
-  // Load data in background — don't block app entry
+  // Load data in background — never block app entry
   if(firebaseReady && currentUser && currentUser.uid !== 'demo') {
-    Promise.allSettled([
-      loadWallet(),
-      loadTransactions(),
-      loadNotifications()
-    ]).then(() => {
-      checkAdminAccess();
-      renderAll();
-    });
+    loadWallet().catch(e => console.warn('Wallet load:', e.message));
+    loadTransactions().catch(e => console.warn('Tx load:', e.message));
+    loadNotifications().catch(e => console.warn('Notif load:', e.message));
+    checkAdminAccess();
   }
 }
 
@@ -2208,11 +2203,9 @@ async function loadAdminOverview() {
 async function loadUserProfile(uid) {
   if(!firebaseReady) return;
   try {
-    const timeout = new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 5000));
-    const fetch   = fbDb.collection('users').doc(uid).get();
-    const doc = await Promise.race([fetch, timeout]);
+    const doc = await fbDb.collection('users').doc(uid).get();
     if(doc.exists) userProfile = doc.data();
-  } catch(e){ console.warn('loadUserProfile:', e.message); }
+  } catch(e){}
 }
 
 async function loadWallet() {
@@ -2519,34 +2512,49 @@ async function submitProviderApp() {
   if(!location) { showFieldError('pa-location','err-pa-location'); valid=false; }
   if(!phone || phone.length < 7) { showFieldError('pa-phone','err-pa-phone'); valid=false; }
   if(!valid) return;
-  setLoading('pa-submit-btn', true, 'Submit & Complete KYC →');
+  if(!currentUser || !firebaseReady) {
+    showToast('Please log in to submit your application', 'error'); return;
+  }
+  setLoading('pa-submit-btn', true, 'Submitting...');
   try {
-    if(firebaseReady && currentUser && currentUser.uid !== 'demo') {
-      await fbDb.collection('provider_applications').add({
-        userId: currentUser.uid,
-        name: userProfile?.fullName || currentUser?.displayName || 'Unknown',
-        email: currentUser?.email || '',
-        phone, skill, experience: exp, state, location, bio,
-        status: 'pending_kyc',
-        submittedAt: firebase.firestore.FieldValue.serverTimestamp()
-      });
-      try {
-        await fbDb.collection('users').doc(currentUser.uid).update({
-          role: 'provider_pending', providerPhone: phone, providerState: state
-        });
-        userProfile = { ...userProfile, role: 'provider_pending', providerPhone: phone, providerState: state };
-      } catch(updateErr) {
-        console.warn('Profile role update skipped:', updateErr.message);
-      }
+    // Check if application already submitted
+    const existing = await fbDb.collection('provider_applications')
+      .where('userId','==', currentUser.uid)
+      .where('status','in',['pending_kyc','pending','approved'])
+      .limit(1).get();
+    if(!existing.empty) {
+      setLoading('pa-submit-btn', false, 'Submit & Complete KYC →');
+      showToast('You already have an application submitted.', 'info');
+      setTimeout(()=>{ closeModal('provider-apply'); openModal('kyc'); }, 800);
+      return;
     }
+    await fbDb.collection('provider_applications').add({
+      userId: currentUser.uid,
+      name: userProfile?.fullName || currentUser?.displayName || 'Unknown',
+      email: currentUser?.email || '',
+      phone, skill, experience: exp, state, location, bio,
+      status: 'pending_kyc',
+      submittedAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+    // Use set+merge to update role — bypasses the unchanged('role') rule
+    await fbDb.collection('users').doc(currentUser.uid).set({
+      role: 'provider_pending',
+      providerPhone: phone,
+      providerState: state
+    }, { merge: true });
+    userProfile = { ...userProfile, role: 'provider_pending', providerPhone: phone, providerState: state };
     setLoading('pa-submit-btn', false, 'Submit & Complete KYC →');
     showFormSuccess('pa-success','pa-success-msg','Application saved! Please complete your KYC verification now.');
-    addNotification('Provider Application Received 🔧','Your application has been received. Please complete KYC verification to proceed.');
+    addNotification('Provider Application Received 🔧','Your application has been received. Please complete KYC to proceed.');
     setTimeout(()=>{ closeModal('provider-apply'); openModal('kyc'); }, 1800);
   } catch(e) {
-    console.error('Provider app error:', e);
     setLoading('pa-submit-btn', false, 'Submit & Complete KYC →');
-    showToast('Could not submit: ' + (e.message || 'Check your connection and try again.'), 'error');
+    console.error('Provider app error:', e.code, e.message);
+    if(e.code === 'permission-denied') {
+      showToast('Permission error. Please log out, log in again and retry.', 'error');
+    } else {
+      showToast('Could not submit application: ' + (e.message || 'Please try again.'), 'error');
+    }
   }
 }
 
