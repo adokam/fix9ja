@@ -11,7 +11,7 @@
 <meta name="apple-mobile-web-app-title" content="Fix9ja"/>
 <link rel="manifest" href="data:application/json,{&quot;name&quot;:&quot;Fix9ja&quot;,&quot;short_name&quot;:&quot;Fix9ja&quot;,&quot;start_url&quot;:&quot;/&quot;,&quot;display&quot;:&quot;standalone&quot;,&quot;background_color&quot;:&quot;%230d5c34&quot;,&quot;theme_color&quot;:&quot;%230d5c34&quot;,&quot;description&quot;:&quot;Nigeria home services super-app&quot;}"/>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%230d5c34'/%3E%3Cstop offset='100%25' style='stop-color:%232d9e62'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='400' rx='88' fill='url(%23bg)'/%3E%3Crect x='108' y='208' width='184' height='134' rx='8' fill='white'/%3E%3Cpolygon points='200,88,94,214,306,214' fill='white'/%3E%3Crect x='170' y='266' width='60' height='76' rx='9' fill='%231a7a4a'/%3E%3Crect x='122' y='230' width='38' height='34' rx='6' fill='%231a7a4a' opacity='0.9'/%3E%3Crect x='240' y='230' width='38' height='34' rx='6' fill='%231a7a4a' opacity='0.9'/%3E%3Ccircle cx='290' cy='290' r='52' fill='%23f5a623'/%3E%3Cg transform='translate(290,290) rotate(-40)'%3E%3Crect x='-7' y='4' width='14' height='52' rx='6' fill='white'/%3E%3Ccircle cx='0' cy='0' r='18' fill='white'/%3E%3Ccircle cx='0' cy='0' r='10' fill='%23f5a623'/%3E%3C/g%3E%3Ccircle cx='200' cy='86' r='11' fill='%23f5a623'/%3E%3C/svg%3E"/>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=Fraunces:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Fraunces:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet"/>
 
 <!-- ══════════════════════════════════════════
      FIREBASE SDK  (v9 compat build)
@@ -37,12 +37,12 @@
   --sh-md:0 6px 28px rgba(13,92,52,.12);
   --sh-lg:0 16px 56px rgba(13,92,52,.16);
   --r:14px;--r-sm:10px;
-  --font:'DM Sans',sans-serif;--serif:'Fraunces',serif;
+  --font:'Outfit',sans-serif;--serif:'Fraunces',serif;
   --nav-w:260px;--topbar-h:56px;--mob-nav:60px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;overflow-x:hidden;max-width:100vw;}
-body{font-family:var(--font);background:var(--bg);color:var(--ink);min-height:100vh;overflow-x:hidden;max-width:100vw;position:relative;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font);background:var(--bg);color:var(--ink);min-height:100vh;overflow-x:hidden;}
 button{font-family:var(--font);cursor:pointer;border:none;outline:none;}
 input,select,textarea{font-family:var(--font);outline:none;}
 ::-webkit-scrollbar{width:5px;}
@@ -70,15 +70,15 @@ input,select,textarea{font-family:var(--font);outline:none;}
 .su-avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--g2),var(--g3));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem;flex-shrink:0;}
 .su-name{font-size:.85rem;font-weight:700;}
 .su-role{font-size:.68rem;color:var(--ink3);}
-.main-area{flex:1;margin-left:var(--nav-w);display:flex;flex-direction:column;min-height:100vh;overflow-x:hidden;}
-.topbar{height:var(--topbar-h);background:var(--white);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 12px;gap:8px;position:sticky;top:0;z-index:150;width:100%;box-sizing:border-box;overflow:hidden;}
-.topbar-title{font-family:var(--serif);font-size:1rem;font-weight:700;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;}
-.topbar-search{flex:1;max-width:280px;position:relative;min-width:0;}
-.topbar-search input{width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:8px 12px 8px 34px;font-size:.82rem;color:var(--ink);transition:border-color .2s;}
+.main-area{flex:1;margin-left:var(--nav-w);display:flex;flex-direction:column;min-height:100vh;}
+.topbar{height:var(--topbar-h);background:var(--white);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 20px;gap:12px;position:sticky;top:0;z-index:150;}
+.topbar-title{font-family:var(--serif);font-size:1.3rem;font-weight:700;flex:1;}
+.topbar-search{flex:1;max-width:380px;position:relative;}
+.topbar-search input{width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:9px 14px 9px 38px;font-size:.85rem;color:var(--ink);transition:border-color .2s;}
 .topbar-search input:focus{border-color:var(--g2);}
-.topbar-search .s-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--ink3);font-size:.85rem;}
-.topbar-actions{display:flex;align-items:center;gap:6px;flex-shrink:0;}
-.icon-btn{width:34px;height:34px;border-radius:9px;background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.9rem;transition:all .18s;position:relative;flex-shrink:0;}
+.topbar-search .s-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--ink3);}
+.topbar-actions{display:flex;align-items:center;gap:8px;}
+.icon-btn{width:38px;height:38px;border-radius:10px;background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;transition:all .18s;position:relative;}
 .icon-btn:hover{background:var(--g4);border-color:var(--g5);}
 .badge-dot{position:absolute;top:7px;right:7px;width:7px;height:7px;background:var(--red);border-radius:50%;border:1.5px solid var(--white);}
 .page-content{padding:16px;flex:1;display:none;animation:fadeUp .3s ease both;}
@@ -89,8 +89,8 @@ input,select,textarea{font-family:var(--font);outline:none;}
    COMMON COMPONENTS
 ════════════════════════════════════════ */
 .page-header{margin-bottom:24px;}
-.page-header h1{font-family:var(--serif);font-size:1.4rem;font-weight:900;color:var(--ink);letter-spacing:-.3px;}
-.page-header p{font-size:.82rem;color:var(--ink3);margin-top:4px;}
+.page-header h1{font-family:var(--serif);font-size:1.8rem;font-weight:900;color:var(--ink);letter-spacing:-.5px;}
+.page-header p{font-size:.88rem;color:var(--ink3);margin-top:4px;}
 .card{background:var(--white);border-radius:var(--r);padding:20px;box-shadow:var(--sh);}
 .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px;}
 .stat-card{background:var(--white);border-radius:var(--r);padding:20px;box-shadow:var(--sh);border-left:4px solid var(--g3);}
@@ -98,8 +98,8 @@ input,select,textarea{font-family:var(--font);outline:none;}
 .stat-card.red{border-color:var(--red);}
 .stat-card.blue{border-color:var(--blue);}
 .sc-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--ink3);}
-.sc-value{font-family:var(--serif);font-size:1.5rem;font-weight:700;color:var(--ink);margin:6px 0 4px;letter-spacing:-.3px;}
-.sc-delta{font-size:.72rem;font-weight:600;}
+.sc-value{font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--ink);margin:6px 0 4px;letter-spacing:-.5px;}
+.sc-delta{font-size:.78rem;font-weight:600;}
 .sc-delta.up{color:var(--g2);}
 .sc-delta.dn{color:var(--red);}
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
@@ -157,7 +157,7 @@ input,select,textarea{font-family:var(--font);outline:none;}
 .wallet-hero{background:linear-gradient(135deg,var(--g1) 0%,var(--g2) 60%,var(--g3) 100%);border-radius:var(--r);padding:28px;color:#fff;position:relative;overflow:hidden;}
 .wallet-hero::before{content:'';position:absolute;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.06);top:-60px;right:-40px;}
 .wh-label{font-size:.75rem;font-weight:600;opacity:.75;text-transform:uppercase;letter-spacing:.1em;}
-.wh-amount{font-family:var(--serif);font-size:2.2rem;font-weight:900;letter-spacing:-1px;margin:6px 0;}
+.wh-amount{font-family:var(--serif);font-size:2.8rem;font-weight:900;letter-spacing:-1.5px;margin:6px 0;}
 .wh-actions{display:flex;gap:12px;margin-top:20px;position:relative;z-index:1;}
 .wh-action{display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;}
 .wh-circle{width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:background .2s;}
@@ -338,7 +338,7 @@ select option{background:var(--white);}
   body{font-size:13px;}
   .sidebar{transform:translateX(-260px);width:260px;position:fixed;top:0;bottom:0;z-index:250;}
   .sidebar.open{transform:translateX(0);}
-  .main-area{margin-left:0 !important;width:100% !important;max-width:100vw !important;}
+  .main-area{margin-left:0 !important;width:100% !important;}
   .topbar{padding:0 12px;}
   .topbar-search{display:none;}
   .mob-menu-btn{display:flex;}
@@ -388,10 +388,8 @@ select option{background:var(--white);}
 /* Prevent horizontal overflow globally */
 *{box-sizing:border-box;}
 img,video,iframe{max-width:100%;}
-.page-content{overflow-x:hidden;max-width:100%;width:100%;}
-input,select,textarea{max-width:100%;box-sizing:border-box;}
-.page-content{overflow-x:hidden;max-width:100%;width:100%;}
-.card{min-width:0;max-width:100%;}
+.page-content{overflow-x:hidden;max-width:100%;}
+input,select,textarea{max-width:100%;width:100%;}
 /* Sidebar must not cover content */
 .sidebar{z-index:250;}
 .sidebar-overlay{z-index:240;}
@@ -416,10 +414,7 @@ body:not(:has(#page-app[style*="flex"])) .mobile-nav { display:none !important; 
   .services-grid{grid-template-columns:repeat(4,1fr) !important;}
 }
 @media(max-width:480px){
-  .services-grid{grid-template-columns:repeat(3,1fr) !important;}
-}
-@media(max-width:360px){
-  .services-grid{grid-template-columns:repeat(3,1fr) !important;}
+  .services-grid{grid-template-columns:repeat(4,1fr) !important;}
 }
 /* ── OPay-style Service Cards ── */
 .svc-card{background:var(--white);border-radius:12px;padding:12px 6px;text-align:center;cursor:pointer;transition:all .18s;border:1.5px solid var(--border);display:flex;flex-direction:column;align-items:center;gap:6px;min-width:0;}
@@ -605,6 +600,9 @@ body:not(:has(#page-app[style*="flex"])) .mobile-nav { display:none !important; 
     <div class="form-group"><label class="form-label">Phone Number *</label>
       <div class="input-wrap"><span class="ii">📱</span><input type="tel" id="pa-phone" placeholder="08012345678"></div>
       <div class="field-error" id="err-pa-phone">⚠ Phone number is required</div>
+    </div>
+    <div class="form-group"><label class="form-label">Your Rate <span style="color:var(--ink3);font-size:.72rem;">(optional — e.g. ₦8,000/hr)</span></label>
+      <div class="input-wrap"><span class="ii">💰</span><input type="text" id="pa-rate" placeholder="e.g. ₦8,000/hr or ₦20,000/day"></div>
     </div>
     <div class="form-group"><label class="form-label">Tell us about yourself *</label>
       <textarea id="pa-bio" placeholder="Describe your experience, certifications, and why customers should choose you..." style="min-height:80px;"></textarea>
@@ -912,11 +910,7 @@ body:not(:has(#page-app[style*="flex"])) .mobile-nav { display:none !important; 
           </div>
           <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:20px;">
             <input type="checkbox" id="tc-agree" style="width:18px;height:18px;margin-top:2px;accent-color:var(--g2);">
-            <label for="tc-agree" style="font-size:.82rem;color:var(--ink2);cursor:pointer;line-height:1.6;">I agree to Fix9ja's
-              <span style="color:var(--g2);font-weight:700;cursor:pointer;" onclick="event.preventDefault();window.open('terms-of-service.html','_blank')">Terms of Service</span>
-              and
-              <span style="color:var(--g2);font-weight:700;cursor:pointer;" onclick="event.preventDefault();window.open('privacy-policy.html','_blank')">Privacy Policy</span>
-            </label>
+            <label for="tc-agree" style="font-size:.82rem;color:var(--ink2);cursor:pointer;line-height:1.6;">I agree to Fix9ja's <span style="color:var(--g2);font-weight:700;" onclick="event.preventDefault();window.open('terms-of-service.html','_blank')">Terms of Service</span> and <span style="color:var(--g2);font-weight:700;" onclick="event.preventDefault();window.open('privacy-policy.html','_blank')">Privacy Policy</span></label>
           </div>
           <div class="field-error" id="err-tc-agree" style="margin-bottom:12px;">⚠ You must agree to the Terms & Conditions</div>
           <button class="btn btn-primary btn-full btn-lg" id="signup-btn" onclick="doSignup()">Create Account</button>
@@ -1415,11 +1409,9 @@ body:not(:has(#page-app[style*="flex"])) .mobile-nav { display:none !important; 
             <div class="section-hdr"><h2>Support</h2></div>
             <div class="setting-item" onclick="openWhatsApp()" style="cursor:pointer;"><div class="si-icon-box" style="background:var(--g4);">❓</div><div class="si-info"><div class="si-title">Help Centre & FAQs</div><div class="si-desc">Chat with us on WhatsApp</div></div><div style="color:var(--g2);font-size:1.2rem;">›</div></div>
             <div class="setting-item" onclick="openWhatsApp()" style="cursor:pointer;"><div class="si-icon-box" style="background:var(--blue-lt);">💬</div><div class="si-info"><div class="si-title">Live Chat Support</div><div class="si-desc">We typically reply in minutes</div></div><div style="color:var(--g2);font-size:1.2rem;">›</div></div>
-            <div class="setting-item" onclick="window.open('mailto:info@fix9ja.com')" style="cursor:pointer;"><div class="si-icon-box" style="background:var(--g4);">✉️</div><div class="si-info"><div class="si-title">Email Support</div><div class="si-desc"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cba2a5ada48bada2b3f2a1aae5a8a4a6">[email&#160;protected]</a></div></div><div style="color:var(--g2);font-size:1.2rem;">›</div></div>
             <div class="setting-item" onclick="window.open('privacy-policy.html','_blank')" style="cursor:pointer;"><div class="si-icon-box" style="background:var(--blue-lt);">🔐</div><div class="si-info"><div class="si-title">Privacy Policy</div><div class="si-desc">How we protect your data</div></div><div style="color:var(--g2);font-size:1.2rem;">›</div></div>
             <div class="setting-item" onclick="window.open('terms-of-service.html','_blank')" style="cursor:pointer;"><div class="si-icon-box" style="background:var(--amber-lt);">📄</div><div class="si-info"><div class="si-title">Terms of Service</div><div class="si-desc">Our platform rules & agreements</div></div><div style="color:var(--g2);font-size:1.2rem;">›</div></div>
             <div class="setting-item"><div class="si-icon-box" style="background:var(--bg);">ℹ️</div><div class="si-info"><div class="si-title">About Fix9ja</div><div class="si-desc">Version 1.0.0 · Fix9ja Technologies Ltd</div></div><div style="color:var(--ink3);">›</div></div>
-            <!-- Hidden admin button — only visible to admin UID -->
             <div class="setting-item" id="settings-admin-btn" style="display:none;cursor:pointer;background:var(--amber-lt);border-radius:10px;margin-top:8px;" onclick="window.open('admin.html','_blank')"><div class="si-icon-box" style="background:var(--amber-lt);">👑</div><div class="si-info"><div class="si-title" style="color:#9a6c0a;font-weight:700;">Admin Dashboard</div><div class="si-desc">Platform management</div></div><div style="color:var(--amber);font-size:1.2rem;">›</div></div>
           </div>
         </div>
@@ -1620,7 +1612,7 @@ body:not(:has(#page-app[style*="flex"])) .mobile-nav { display:none !important; 
 <!-- ══════════════════════════════════════
      FIREBASE CONFIG + APP LOGIC
 ══════════════════════════════════════ -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 /* ══════════════════════════════════════════════════
    🔥 STEP 1: PASTE YOUR FIREBASE CONFIG HERE
    Go to Firebase Console → Project Settings →
@@ -1711,40 +1703,33 @@ let splashStep = 0;
 /* ══ PAYSTACK CONFIG ══ */
 const PAYSTACK_PK = 'pk_test_827c24659f586070f6fa37830ed2830cb019ed33';
 const PAYSTACK_SK = 'sk_test_3305f9ea593071844552d5b1f03e67d76e378373';
+// Replace with your Firebase UID from Firebase Console → Authentication → Users
+const ADMIN_UID = 'REPLACE_WITH_YOUR_FIREBASE_UID';
 
-/* ══ SESSION TIMEOUT — 20 minutes inactivity ══ */
+/* ══ SESSION TIMEOUT — 30 minutes inactivity ══ */
 let sessionTimer = null;
-const SESSION_TIMEOUT = 20 * 60 * 1000; // 20 minutes
-let lastActivity = Date.now();
+const SESSION_TIMEOUT = 30 * 60 * 1000; // 30 minutes
 
 function resetSessionTimer() {
-  lastActivity = Date.now();
   clearTimeout(sessionTimer);
-  sessionTimer = setTimeout(async () => {
+  sessionTimer = setTimeout(() => {
     if(currentUser) {
-      showToast('You have been logged out due to 20 minutes of inactivity.', 'info');
-      await doLogout();
+      showToast('Session expired due to inactivity. Please sign in again.', 'info');
+      doLogout();
     }
   }, SESSION_TIMEOUT);
 }
 
 function startSessionTracking() {
-  ['click','keydown','touchstart','scroll'].forEach(evt => {
+  ['click','keypress','mousemove','touchstart','scroll'].forEach(evt => {
     document.addEventListener(evt, resetSessionTimer, { passive: true });
   });
   resetSessionTimer();
-  // Also check every minute in case timers are unreliable
-  setInterval(() => {
-    if(currentUser && (Date.now() - lastActivity) > SESSION_TIMEOUT) {
-      showToast('Session expired. Please sign in again.', 'info');
-      doLogout();
-    }
-  }, 60 * 1000);
 }
 
 function stopSessionTracking() {
   clearTimeout(sessionTimer);
-  ['click','keydown','touchstart','scroll'].forEach(evt => {
+  ['click','keypress','mousemove','touchstart','scroll'].forEach(evt => {
     document.removeEventListener(evt, resetSessionTimer);
   });
 }
@@ -2064,11 +2049,11 @@ async function enterApp() {
   updateUserUI();
   goPage('dashboard');
   renderAll();
-  // Load data in background — never block app entry
+  // Load Firebase data in background — never block app entry
   if(firebaseReady && currentUser && currentUser.uid !== 'demo') {
-    loadWallet().catch(e => console.warn('Wallet load:', e.message));
-    loadTransactions().catch(e => console.warn('Tx load:', e.message));
-    loadNotifications().catch(e => console.warn('Notif load:', e.message));
+    loadWallet().catch(()=>{});
+    loadTransactions().catch(()=>{});
+    loadNotifications().catch(()=>{});
     checkAdminAccess();
   }
 }
@@ -2269,16 +2254,7 @@ const PAGE_TITLES = {dashboard:'Dashboard',services:'Home Services',utilities:'U
 
 let pageHistory = ['dashboard'];
 
-// Save scroll positions per page
-const pageScrollPositions = {};
-
 function goPage(page) {
-  // Save current scroll position of the page we're leaving
-  const currentPage = pageHistory[pageHistory.length-1];
-  if(currentPage) {
-    pageScrollPositions[currentPage] = window.scrollY || document.documentElement.scrollTop || 0;
-  }
-
   PAGES.forEach(p => {
     const pc = document.getElementById('pc-'+p);
     const nv = document.getElementById('nav-'+p);
@@ -2292,16 +2268,7 @@ function goPage(page) {
     titleEl.textContent = PAGE_TITLES[page] || 'Fix9ja';
   }
   if(window.innerWidth<=768) { document.getElementById('sidebar').classList.remove('open'); document.getElementById('sidebar-overlay').classList.remove('open'); }
-
-  // Restore scroll position if going back, or go to top for new pages
-  const isGoingBack = pageHistory.length > 1 && pageHistory[pageHistory.length-2] === page;
-  if(isGoingBack && pageScrollPositions[page] !== undefined) {
-    // Restore where they were on that page
-    requestAnimationFrame(() => window.scrollTo(0, pageScrollPositions[page]));
-  } else {
-    window.scrollTo(0, 0);
-  }
-
+  window.scrollTo(0,0);
   // Track history for back button
   if(pageHistory[pageHistory.length-1] !== page) {
     pageHistory.push(page);
@@ -2316,6 +2283,7 @@ function goPage(page) {
     const content = document.getElementById('admin-content');
     if(locked) locked.style.display = content && content.style.display==='none' ? 'flex' : 'none';
     if(content && content.style.display === 'block') {
+      // Already unlocked — refresh overview
       loadAdminOverview();
     }
   }
@@ -2454,42 +2422,25 @@ async function submitKYC() {
   if(!idtype) { showFieldError('kyc-idtype','err-kyc-idtype'); valid=false; }
   if(!idnum)  { showFieldError('kyc-idnum','err-kyc-idnum'); valid=false; }
   if(!valid) return;
-  if(!currentUser || !firebaseReady) {
-    showToast('Please log in to submit KYC','error'); return;
-  }
+  if(!currentUser || !firebaseReady) { showToast('Please log in first','error'); return; }
   setLoading('kyc-submit-btn', true, 'Submitting...');
   try {
-    // Check if KYC doc already exists
-    const existing = await fbDb.collection('kyc').doc(currentUser.uid).get();
-    if(existing.exists && existing.data().status === 'verified') {
-      setLoading('kyc-submit-btn', false, 'Submit for Verification');
-      showToast('Your KYC is already verified!', 'success');
-      setTimeout(()=>closeModal('kyc'), 1500);
-      return;
-    }
-    const kycData = {
+    await fbDb.collection('kyc').doc(currentUser.uid).set({
       userId: currentUser.uid,
       name: userProfile?.fullName || currentUser?.displayName || '',
       email: currentUser?.email || '',
       bvn, idType: idtype, idNumber: idnum, workId: workid,
-      status: 'pending',
-      submittedAt: firebase.firestore.FieldValue.serverTimestamp()
-    };
-    // Use set with merge so it works whether doc exists or not
-    await fbDb.collection('kyc').doc(currentUser.uid).set(kycData, { merge: true });
-    await fbDb.collection('users').doc(currentUser.uid).update({ kycStatus: 'pending' });
+      status: 'pending', submittedAt: firebase.firestore.FieldValue.serverTimestamp()
+    }, { merge: true });
+    await fbDb.collection('users').doc(currentUser.uid).set({ kycStatus: 'pending' }, { merge: true });
     setLoading('kyc-submit-btn', false, 'Submit for Verification');
     showFormSuccess('kyc-success','kyc-success-msg','KYC submitted! You will be notified once verified within 24–48 hours.');
     addNotification('KYC Submitted 🪪','Your KYC documents have been submitted. We will notify you within 24–48 hours.');
-    setTimeout(()=>closeModal('kyc'), 2500);
+    setTimeout(()=>closeModal('kyc'), 2000);
   } catch(e) {
     setLoading('kyc-submit-btn', false, 'Submit for Verification');
     console.error('KYC error:', e.code, e.message);
-    if(e.code === 'permission-denied') {
-      showToast('Permission denied — please log out and log in again, then retry.', 'error');
-    } else {
-      showToast('Could not submit KYC: ' + (e.message || 'Please try again.'), 'error');
-    }
+    showToast('Could not submit KYC: ' + (e.message||'Please try again.'),'error');
   }
 }
 
@@ -2504,6 +2455,7 @@ async function submitProviderApp() {
   const state    = document.getElementById('pa-state').value;
   const location = document.getElementById('pa-location').value.trim();
   const phone    = document.getElementById('pa-phone').value.trim();
+  const rate     = document.getElementById('pa-rate').value.trim();
   const bio      = document.getElementById('pa-bio').value.trim();
   let valid = true;
   if(!skill)    { showFieldError('pa-skill','err-pa-skill'); valid=false; }
@@ -2511,50 +2463,31 @@ async function submitProviderApp() {
   if(!state)    { showFieldError('pa-state','err-pa-state'); valid=false; }
   if(!location) { showFieldError('pa-location','err-pa-location'); valid=false; }
   if(!phone || phone.length < 7) { showFieldError('pa-phone','err-pa-phone'); valid=false; }
+  if(!rate) rate = 'Negotiable'; // Rate is optional
   if(!valid) return;
-  if(!currentUser || !firebaseReady) {
-    showToast('Please log in to submit your application', 'error'); return;
-  }
-  setLoading('pa-submit-btn', true, 'Submitting...');
+  setLoading('pa-submit-btn', true, 'Submit & Complete KYC →');
+  await new Promise(r=>setTimeout(r,900));
   try {
-    // Check if application already submitted
-    const existing = await fbDb.collection('provider_applications')
-      .where('userId','==', currentUser.uid)
-      .where('status','in',['pending_kyc','pending','approved'])
-      .limit(1).get();
-    if(!existing.empty) {
-      setLoading('pa-submit-btn', false, 'Submit & Complete KYC →');
-      showToast('You already have an application submitted.', 'info');
-      setTimeout(()=>{ closeModal('provider-apply'); openModal('kyc'); }, 800);
-      return;
+    if(firebaseReady && currentUser && currentUser.uid !== 'demo') {
+      await fbDb.collection('provider_applications').add({
+        userId: currentUser.uid,
+        name: userProfile?.fullName || currentUser?.displayName || 'Unknown',
+        email: currentUser?.email,
+        phone, skill, experience: exp, state, location, rate, bio,
+        status: 'pending_kyc',
+        submittedAt: firebase.firestore.FieldValue.serverTimestamp()
+      });
+      // Mark user as provider applicant — use set+merge to avoid permission denied
+      await fbDb.collection('users').doc(currentUser.uid).set({ role: 'provider_pending', providerPhone: phone, providerState: state }, { merge: true });
+      userProfile = { ...userProfile, role: 'provider_pending', providerPhone: phone, providerState: state };
     }
-    await fbDb.collection('provider_applications').add({
-      userId: currentUser.uid,
-      name: userProfile?.fullName || currentUser?.displayName || 'Unknown',
-      email: currentUser?.email || '',
-      phone, skill, experience: exp, state, location, bio,
-      status: 'pending_kyc',
-      submittedAt: firebase.firestore.FieldValue.serverTimestamp()
-    });
-    // Use set+merge to update role — bypasses the unchanged('role') rule
-    await fbDb.collection('users').doc(currentUser.uid).set({
-      role: 'provider_pending',
-      providerPhone: phone,
-      providerState: state
-    }, { merge: true });
-    userProfile = { ...userProfile, role: 'provider_pending', providerPhone: phone, providerState: state };
     setLoading('pa-submit-btn', false, 'Submit & Complete KYC →');
     showFormSuccess('pa-success','pa-success-msg','Application saved! Please complete your KYC verification now.');
-    addNotification('Provider Application Received 🔧','Your application has been received. Please complete KYC to proceed.');
+    addNotification('Provider Application Received 🔧','Your application has been received. Please complete KYC verification to proceed.');
     setTimeout(()=>{ closeModal('provider-apply'); openModal('kyc'); }, 1800);
   } catch(e) {
     setLoading('pa-submit-btn', false, 'Submit & Complete KYC →');
-    console.error('Provider app error:', e.code, e.message);
-    if(e.code === 'permission-denied') {
-      showToast('Permission error. Please log out, log in again and retry.', 'error');
-    } else {
-      showToast('Could not submit application: ' + (e.message || 'Please try again.'), 'error');
-    }
+    showToast('Could not submit application. Please try again.','error');
   }
 }
 
@@ -2761,8 +2694,6 @@ function checkMeter() {
 ══════════════════════════════════════════════════ */
 const VTPASS_BASE = 'https://sandbox.vtpass.com/api';
 const VTPASS_USER = 'danielameh1027@gmail.com';
-// Your Firebase UID — only this account sees admin features
-const ADMIN_UID = 'REPLACE_WITH_YOUR_FIREBASE_UID';
 const VTPASS_PASS = '12345@Adokam';
 const VTPASS_PK   = 'PK_1222b1e1f1796f928447776a371fb6f522d61b249d5';
 const VTPASS_SK   = 'SK_42908843ab392f40a9d1d7cda5096387ca5e3379db7';
@@ -2908,10 +2839,10 @@ async function payUtil(type) {
       // Save to Firestore
       if(firebaseReady && currentUser && currentUser.uid!=='demo') {
         try {
-          await fbDb.collection('wallets').doc(currentUser.uid).update({
+          await fbDb.collection('wallets').doc(currentUser.uid).set({
             balance: firebase.firestore.FieldValue.increment(-amount),
             totalSpent: firebase.firestore.FieldValue.increment(amount)
-          });
+          }, { merge: true });
           await fbDb.collection('transactions').add({
             userId: currentUser.uid, type:'debit', amount,
             description: name, category:'utility',
@@ -3249,36 +3180,13 @@ async function applyReferralBonus(referralCode, newUserId) {
     const referrerId = referrer.id;
     if(referrerId === newUserId) return; // cannot refer yourself
     // Check not already referred
-    const alreadyReferred = await fbDb.collection('referrals').where('referredId','==',newUserId).limit(1).get();
-    if(!alreadyReferred.empty) return;
-    // Credit referrer ₦500 using set+merge (works with our Firestore rules)
-    await fbDb.collection('wallets').doc(referrerId).set({
-      balance: firebase.firestore.FieldValue.increment(500),
-      totalFunded: firebase.firestore.FieldValue.increment(500),
-      updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-    }, { merge: true });
-    // Credit new user ₦500
-    await fbDb.collection('wallets').doc(newUserId).set({
-      balance: firebase.firestore.FieldValue.increment(500),
-      totalFunded: firebase.firestore.FieldValue.increment(500),
-      updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-    }, { merge: true });
-    // Record referral
-    await fbDb.collection('referrals').add({
-      referrerId,
-      referrerName: referrer.data().fullName || '',
-      referredId: newUserId,
-      bonus: 500,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp()
-    });
-    // Notify referrer
-    await fbDb.collection('notifications').add({
-      userId: referrerId,
-      title: 'Referral Bonus! 🎁',
-      message: 'A friend signed up using your referral code. ₦500 has been added to your wallet!',
-      read: false,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp()
-    });
+    const existing = await fbDb.collection('referrals').where('referredId','==',newUserId).limit(1).get();
+    if(!existing.empty) return;
+    // Credit both wallets using set+merge
+    await fbDb.collection('wallets').doc(referrerId).set({ balance: firebase.firestore.FieldValue.increment(500), totalFunded: firebase.firestore.FieldValue.increment(500) }, { merge: true });
+    await fbDb.collection('wallets').doc(newUserId).set({ balance: firebase.firestore.FieldValue.increment(500), totalFunded: firebase.firestore.FieldValue.increment(500) }, { merge: true });
+    await fbDb.collection('referrals').add({ referrerId, referrerName: referrer.data().fullName||'', referredId: newUserId, bonus: 500, createdAt: firebase.firestore.FieldValue.serverTimestamp() });
+    await fbDb.collection('notifications').add({ userId: referrerId, title: 'Referral Bonus! 🎁', message: 'A friend signed up using your referral code. ₦500 has been added to your wallet!', read: false, createdAt: firebase.firestore.FieldValue.serverTimestamp() });
   } catch(e){ console.warn('Referral error:', e.code, e.message); }
 }
 
@@ -4056,117 +3964,90 @@ async function adminRejectWithdrawal(withdrawalId, userId, amount) {
 }
 
 /* ══════════════════════════════════════════════════
-   PWA — Install Prompt (Android + iOS)
+   PWA — Service Worker + Install Prompt
 ══════════════════════════════════════════════════ */
 let pwaInstallPrompt = null;
-let pwaBannerShown = false;
 
-// Android — capture the native install prompt
+// Capture the install prompt
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
   pwaInstallPrompt = e;
-  if(!pwaBannerShown) setTimeout(showPWABanner, 4000);
+  // Show install banner after a short delay
+  setTimeout(showPWABanner, 3000);
 });
 
 function showPWABanner() {
-  if(pwaBannerShown) return;
+  if(!pwaInstallPrompt) return;
   const existing = document.getElementById('pwa-banner');
-  if(existing) existing.remove();
-
-  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent.toLowerCase());
-  const isStandalone = window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
-  if(isStandalone) return; // Already installed
-
-  pwaBannerShown = true;
+  if(existing) return; // already showing
   const banner = document.createElement('div');
   banner.id = 'pwa-banner';
-
-  if(isIOS) {
-    banner.innerHTML = `
-      <div style="display:flex;align-items:flex-start;gap:12px;flex:1;">
-        <div style="width:42px;height:42px;border-radius:10px;background:var(--g1);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:.9rem;font-weight:900;color:#fff;flex-shrink:0;">F<span style="color:#f5a623;">9</span></div>
-        <div>
-          <div style="font-weight:700;font-size:.88rem;color:#1a1a1a;margin-bottom:3px;">Add Fix9ja to Home Screen</div>
-          <div style="font-size:.74rem;color:#666;line-height:1.5;">Tap the <strong>Share</strong> button <span style="font-size:1rem;">⬆️</span> at the bottom of your browser, then tap <strong>"Add to Home Screen"</strong></div>
-        </div>
+  banner.innerHTML = `
+    <div style="display:flex;align-items:center;gap:12px;flex:1;">
+      <div style="width:40px;height:40px;border-radius:10px;background:var(--g1);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:.9rem;font-weight:900;color:#fff;flex-shrink:0;">F<span style="color:var(--amber);">9</span></div>
+      <div>
+        <div style="font-weight:700;font-size:.85rem;color:var(--ink);">Add Fix9ja to Home Screen</div>
+        <div style="font-size:.72rem;color:var(--ink3);margin-top:1px;">Install the app for faster access</div>
       </div>
-      <button onclick="document.getElementById('pwa-banner').remove();pwaBannerShown=false;" style="background:transparent;border:none;font-size:1.3rem;cursor:pointer;color:#888;padding:0;flex-shrink:0;line-height:1;margin-top:-2px;">✕</button>
-    `;
-  } else {
-    banner.innerHTML = `
-      <div style="display:flex;align-items:center;gap:12px;flex:1;">
-        <div style="width:42px;height:42px;border-radius:10px;background:var(--g1);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:.9rem;font-weight:900;color:#fff;flex-shrink:0;">F<span style="color:#f5a623;">9</span></div>
-        <div>
-          <div style="font-weight:700;font-size:.88rem;color:#1a1a1a;">Add Fix9ja to Home Screen</div>
-          <div style="font-size:.74rem;color:#666;margin-top:2px;">Install for faster access — works offline too</div>
-        </div>
-      </div>
-      <button id="pwa-install-btn" style="background:var(--g1);color:#fff;border:none;border-radius:9px;padding:8px 16px;font-family:var(--font);font-size:.8rem;font-weight:700;cursor:pointer;flex-shrink:0;">Install</button>
-      <button onclick="document.getElementById('pwa-banner').remove();pwaBannerShown=false;" style="background:transparent;border:none;font-size:1.3rem;cursor:pointer;color:#888;padding:0;flex-shrink:0;">✕</button>
-    `;
-  }
-
-  banner.style.cssText = `
-    position:fixed;bottom:72px;left:12px;right:12px;
-    background:#fff;border:1.5px solid #e2ebe5;border-radius:16px;
-    padding:14px 14px;display:flex;align-items:center;gap:10px;
-    z-index:8000;box-shadow:0 8px 32px rgba(13,92,52,.18);
-    animation:toastIn .35s cubic-bezier(.34,1.56,.64,1) both;
+    </div>
+    <button id="pwa-install-btn" style="background:var(--g1);color:#fff;border:none;border-radius:9px;padding:8px 16px;font-family:var(--font);font-size:.8rem;font-weight:700;cursor:pointer;flex-shrink:0;">Install</button>
+    <button onclick="document.getElementById('pwa-banner').remove()" style="background:transparent;border:none;font-size:1.2rem;cursor:pointer;color:var(--ink3);padding:0 4px;flex-shrink:0;">✕</button>
   `;
+  banner.style.cssText = 'position:fixed;bottom:68px;left:12px;right:12px;background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:14px 14px;display:flex;align-items:center;gap:10px;z-index:8000;box-shadow:0 8px 32px rgba(13,92,52,.15);animation:toastIn .3s ease both;';
   document.body.appendChild(banner);
-
-  // Android install button
-  const installBtn = document.getElementById('pwa-install-btn');
-  if(installBtn) {
-    installBtn.addEventListener('click', async () => {
-      if(!pwaInstallPrompt) return;
-      try {
-        pwaInstallPrompt.prompt();
-        const { outcome } = await pwaInstallPrompt.userChoice;
-        pwaInstallPrompt = null;
-        banner.remove();
-        if(outcome === 'accepted') showToast('Fix9ja installed! 🎉 Find it on your home screen.','success');
-      } catch(e) { console.warn('PWA install error:', e); }
-    });
-  }
-
-  // Auto-dismiss iOS banner after 12 seconds
-  if(isIOS) setTimeout(() => { const b = document.getElementById('pwa-banner'); if(b) b.remove(); }, 12000);
+  document.getElementById('pwa-install-btn').addEventListener('click', async () => {
+    if(!pwaInstallPrompt) return;
+    pwaInstallPrompt.prompt();
+    const { outcome } = await pwaInstallPrompt.userChoice;
+    pwaInstallPrompt = null;
+    banner.remove();
+    if(outcome === 'accepted') showToast('Fix9ja installed! 🎉','success');
+  });
 }
 
 function installPWA() {
   if(pwaInstallPrompt) {
     showPWABanner();
-    pwaBannerShown = false;
-    showPWABanner();
   } else {
-    const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent.toLowerCase());
-    if(isIOS) {
-      pwaBannerShown = false;
-      showPWABanner();
-    } else {
-      showToast('Open Fix9ja in Chrome and tap Menu → "Add to Home Screen"','info');
-    }
+    // iOS fallback — show manual instructions
+    showToast('On iPhone: tap Share → "Add to Home Screen"','info');
   }
 }
 
-// Show banner on load — works for both Android and iOS
+// iOS detection — show manual prompt
 window.addEventListener('load', () => {
-  const isStandalone = window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
-  if(isStandalone) return;
-  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent.toLowerCase());
-  // For iOS show banner since no beforeinstallprompt event fires
-  if(isIOS) setTimeout(() => showPWABanner(), 5000);
+  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent) && !window.navigator.standalone;
+  if(isIOS) {
+    setTimeout(() => {
+      const existing = document.getElementById('pwa-banner');
+      if(existing) return;
+      const banner = document.createElement('div');
+      banner.id = 'pwa-banner';
+      banner.innerHTML = `
+        <div style="display:flex;align-items:center;gap:12px;flex:1;">
+          <div style="font-size:1.6rem;">📲</div>
+          <div>
+            <div style="font-weight:700;font-size:.85rem;color:var(--ink);">Add to Home Screen</div>
+            <div style="font-size:.72rem;color:var(--ink3);margin-top:1px;">Tap <strong>Share ↑</strong> then "Add to Home Screen"</div>
+          </div>
+        </div>
+        <button onclick="document.getElementById('pwa-banner').remove()" style="background:transparent;border:none;font-size:1.2rem;cursor:pointer;color:var(--ink3);">✕</button>
+      `;
+      banner.style.cssText = 'position:fixed;bottom:68px;left:12px;right:12px;background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:14px;display:flex;align-items:center;gap:10px;z-index:8000;box-shadow:0 8px 32px rgba(13,92,52,.15);animation:toastIn .3s ease both;';
+      document.body.appendChild(banner);
+      setTimeout(() => banner.remove(), 10000);
+    }, 4000);
+  }
 });
 
 // Service Worker registration
 if('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     const swContent = `
-const CACHE = 'fix9ja-v3';
+const CACHE = 'fix9ja-v2';
 const ASSETS = ['/'];
 self.addEventListener('install', e => { self.skipWaiting(); e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS).catch(()=>{}))); });
-self.addEventListener('activate', e => { e.waitUntil(caches.claim ? caches.claim() : clients.claim()); });
+self.addEventListener('activate', e => { e.waitUntil(clients.claim()); });
 self.addEventListener('fetch', e => {
   if(e.request.method !== 'GET') return;
   e.respondWith(fetch(e.request).catch(() => caches.match(e.request)));
@@ -4702,4 +4583,11 @@ async function loadChatList() {
 
 // Load chats when entering chat page — hooked into goPage via page-specific loaders
 function closeChatActiveIfOpen() {
-  const activeView = document.g
+  const activeView = document.getElementById('chat-active-view');
+  const listView = document.getElementById('chat-list-view');
+  if(activeView) activeView.style.display = 'none';
+  if(listView) listView.style.display = 'block';
+}
+</script>
+</body>
+</html>
