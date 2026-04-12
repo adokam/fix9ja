@@ -51,7 +51,7 @@ input,select,textarea{font-family:var(--font);outline:none;}
 /* ════════════════════════════════════════
    LAYOUT
 ════════════════════════════════════════ */
-.app-shell{display:block;min-height:100vh;}
+.app-shell{display:flex;min-height:100vh;}
 .sidebar{width:var(--nav-w);flex-shrink:0;background:var(--white);border-right:1px solid var(--border);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:200;transition:transform .3s ease;}
 .sidebar-logo{padding:24px 24px 20px;border-bottom:1px solid var(--border);}
 .logo-mark{font-family:var(--serif);font-size:1.7rem;font-weight:900;color:var(--g1);letter-spacing:-1px;}
@@ -70,7 +70,7 @@ input,select,textarea{font-family:var(--font);outline:none;}
 .su-avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--g2),var(--g3));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem;flex-shrink:0;}
 .su-name{font-size:.85rem;font-weight:700;}
 .su-role{font-size:.68rem;color:var(--ink3);}
-.main-area{flex:1;display:flex;flex-direction:column;min-height:100vh;min-width:0;overflow-x:hidden;padding-left:var(--nav-w);}
+.main-area{flex:1;margin-left:var(--nav-w);display:flex;flex-direction:column;min-height:100vh;min-width:0;overflow-x:hidden;}
 .topbar{height:var(--topbar-h);background:var(--white);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 20px;gap:12px;position:sticky;top:0;z-index:150;}
 .topbar-title{font-family:var(--serif);font-size:1.3rem;font-weight:700;flex:1;}
 .topbar-search{flex:1;max-width:380px;position:relative;}
@@ -1480,9 +1480,6 @@ body:not(:has(#page-app[style*="flex"])) .mobile-nav { display:none !important; 
       </div>
     </div><!-- /pc-admin -->
 
-  </div><!-- /main-area -->
-
-  <!-- MOBILE BOTTOM NAV -->
   <!-- ─────────────────────────────
        CHAT PAGE
   ───────────────────────────────── -->
@@ -1597,8 +1594,8 @@ body:not(:has(#page-app[style*="flex"])) .mobile-nav { display:none !important; 
         <textarea id="in-msg-input" rows="1" placeholder="Type a message..." style="flex:1;border:1.5px solid var(--border);border-radius:20px;padding:9px 14px;font-family:var(--font);font-size:.84rem;outline:none;resize:none;max-height:80px;line-height:1.4;" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();inAppSend();}" oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,80)+'px'"></textarea>
         <button onclick="inAppSend()" style="width:38px;height:38px;border-radius:50%;background:var(--g1);border:none;cursor:pointer;font-size:1rem;color:#fff;flex-shrink:0;">➤</button>
       </div>
-    </div>
-  </div>
+    </div><!-- /pc-chat -->
+  </div><!-- /main-area -->
 
   <div class="mobile-nav" id="mobile-nav" style="display:none;">
     <div class="mn-item active" id="mn-dashboard" onclick="goPage('dashboard')"><div class="mn-icon">🏠</div><div class="mn-dot"></div><div class="mn-label">Home</div></div>
