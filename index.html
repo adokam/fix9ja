@@ -928,11 +928,8 @@ body:not(:has(#page-app:not([style*="display:none"]))) .mobile-nav { display:non
 ══════════════════════════════════════ -->
 <div id="page-app" class="app-shell" style="display:none;min-height:100vh;">
   <!-- SIDEBAR -->
-  <div class="sidebar-logo" style="text-align:center; padding:15px 0;">
-  <img src="https://raw.githubusercontent.com/adokam/fix9ja/main/logo.png" 
-       alt="Fix9ja Logo" 
-       style="width:50px; height:50px; border-radius:50%; object-fit:cover;">
-</div>
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-logo"><div class="logo-mark">Fix<span>9ja</span></div><div class="logo-tag">Your home, sorted.</div></div>
     <div style="flex:1;overflow-y:auto;">
       <div class="nav-section-label">Main</div>
       <div class="nav-item active" id="nav-dashboard" onclick="goPage('dashboard')"><div class="nav-icon">🏠</div>Dashboard</div>
