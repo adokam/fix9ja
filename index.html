@@ -399,7 +399,7 @@ input,select,textarea{max-width:100%;width:100%;}
 #page-landing .mobile-nav, #page-landing .sidebar,
 #page-splash .mobile-nav, #page-splash .sidebar { display:none !important; }
 /* Mobile nav only shows inside page-app, never outside */
-body:not(:has(#page-app[style*="flex"])) .mobile-nav { display:none !important; }
+body:not(:has(#page-app:not([style*="display:none"]))) .mobile-nav { display:none !important; }
 /* Admin panel mobile — tables scroll inside their container */
 .admin-tab-content .card{overflow-x:auto;}
 .data-table{min-width:500px;font-size:.78rem;}
@@ -924,7 +924,7 @@ body:not(:has(#page-app[style*="flex"])) .mobile-nav { display:none !important; 
 <!-- ══════════════════════════════════════
      PAGE: APP SHELL
 ══════════════════════════════════════ -->
-<div id="page-app" style="display:none;min-height:100vh;" class="app-shell">
+<div id="page-app" class="app-shell" style="display:none;min-height:100vh;">
   <!-- SIDEBAR -->
   <div class="sidebar" id="sidebar">
     <div class="sidebar-logo"><div class="logo-mark">Fix<span>9ja</span></div><div class="logo-tag">Your home, sorted.</div></div>
@@ -1760,7 +1760,7 @@ function showPage(id) {
     if(el) el.style.display = 'none';
   });
   const target = document.getElementById(id);
-  if(target) target.style.display = id === 'page-app' ? 'flex' : 'block';
+  if(target) target.style.display = id === 'page-app' ? '' : 'block';
 
   // Mobile nav and sidebar must ONLY show inside the app — never on auth/landing pages
   const mobileNav = document.getElementById('mobile-nav');
