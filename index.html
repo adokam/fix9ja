@@ -9,11 +9,11 @@
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 <meta name="apple-mobile-web-app-title" content="Fix9ja"/>
-<link rel="manifest" href="data:application/json,{&quot;name&quot;:&quot;Fix9ja&quot;,&quot;short_name&quot;:&quot;Fix9ja&quot;,&quot;start_url&quot;:&quot;/&quot;,&quot;display&quot;:&quot;standalone&quot;,&quot;background_color&quot;:&quot;%230d5c34&quot;,&quot;theme_color&quot;:&quot;%230d5c34&quot;,&quot;description&quot;:&quot;Nigeria home services super-app&quot;}"/>
-<!-- FAVICON: Upload your logo.png to GitHub root and it will show here -->
+<link rel="manifest" href="data:application/json,{&quot;name&quot;:&quot;Fix9ja&quot;,&quot;short_name&quot;:&quot;Fix9ja&quot;,&quot;start_url&quot;:&quot;/&quot;,&quot;display&quot;:&quot;standalone&quot;,&quot;background_color&quot;:&quot;%230d5c34&quot;,&quot;theme_color&quot;:&quot;%230d5c34&quot;,&quot;icons&quot;:[{&quot;src&quot;:&quot;logo.png&quot;,&quot;sizes&quot;:&quot;192x192&quot;,&quot;type&quot;:&quot;image/png&quot;}]}"/>
 <link rel="icon" type="image/png" href="logo.png"/>
 <link rel="apple-touch-icon" href="logo.png"/>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Fraunces:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet"/>
 
 <!-- ══════════════════════════════════════════
      FIREBASE SDK  (v9 compat build)
@@ -39,7 +39,7 @@
   --sh-md:0 6px 28px rgba(13,92,52,.12);
   --sh-lg:0 16px 56px rgba(13,92,52,.16);
   --r:14px;--r-sm:10px;
-  --font:'Outfit',sans-serif;--serif:'Fraunces',serif;
+  --font:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;--serif:'Fraunces',serif;
   --nav-w:260px;--topbar-h:56px;--mob-nav:60px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -72,7 +72,7 @@ input,select,textarea{font-family:var(--font);outline:none;}
 .su-avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--g2),var(--g3));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem;flex-shrink:0;}
 .su-name{font-size:.85rem;font-weight:700;}
 .su-role{font-size:.68rem;color:var(--ink3);}
-.main-area{flex:1;margin-left:var(--nav-w);display:flex;flex-direction:column;min-height:100vh;min-width:0;overflow-x:hidden;}
+.main-area{flex:1;margin-left:var(--nav-w);display:flex;flex-direction:column;min-height:100vh;min-width:0;overflow-x:hidden;overflow-y:auto;}
 .topbar{height:var(--topbar-h);background:var(--white);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 20px;gap:12px;position:sticky;top:0;z-index:150;}
 .topbar-title{font-family:var(--serif);font-size:1.3rem;font-weight:700;flex:1;}
 .topbar-search{flex:1;max-width:380px;position:relative;}
@@ -83,7 +83,7 @@ input,select,textarea{font-family:var(--font);outline:none;}
 .icon-btn{width:38px;height:38px;border-radius:10px;background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;transition:all .18s;position:relative;}
 .icon-btn:hover{background:var(--g4);border-color:var(--g5);}
 .badge-dot{position:absolute;top:7px;right:7px;width:7px;height:7px;background:var(--red);border-radius:50%;border:1.5px solid var(--white);}
-.page-content{padding:16px;flex:1;display:none;animation:fadeUp .3s ease both;}
+.page-content{padding:12px;flex:1;display:none;animation:fadeUp .3s ease both;}
 .page-content.active{display:block;}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
 
@@ -93,9 +93,9 @@ input,select,textarea{font-family:var(--font);outline:none;}
 .page-header{margin-bottom:24px;}
 .page-header h1{font-family:var(--serif);font-size:1.8rem;font-weight:900;color:var(--ink);letter-spacing:-.5px;}
 .page-header p{font-size:.88rem;color:var(--ink3);margin-top:4px;}
-.card{background:var(--white);border-radius:var(--r);padding:20px;box-shadow:var(--sh);}
+.card{background:var(--white);border-radius:var(--r);padding:14px;box-shadow:var(--sh);}
 .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px;}
-.stat-card{background:var(--white);border-radius:var(--r);padding:20px;box-shadow:var(--sh);border-left:4px solid var(--g3);}
+.stat-card{background:var(--white);border-radius:var(--r);padding:12px;box-shadow:var(--sh);border-left:4px solid var(--g3);}
 .stat-card.amber{border-color:var(--amber);}
 .stat-card.red{border-color:var(--red);}
 .stat-card.blue{border-color:var(--blue);}
@@ -828,7 +828,7 @@ body:not(:has(#page-app:not([style*="display:none"]))) .mobile-nav { display:non
         <div class="auth-features">
           <div class="auth-feature"><div class="auth-feature-icon">⚡</div><div class="auth-feature-text">Verified electricians, plumbers & cleaners near you</div></div>
           <div class="auth-feature"><div class="auth-feature-icon">💡</div><div class="auth-feature-text">Pay EKEDC, IKEDC, DSTV & airtime instantly</div></div>
-         
+          <div class="auth-feature"><div class="auth-feature-icon">🏠</div><div class="auth-feature-text">Discover verified rental homes across Nigeria</div></div>
           <div class="auth-feature"><div class="auth-feature-icon">💳</div><div class="auth-feature-text">Secure wallet — fund & pay with ease</div></div>
         </div>
       </div>
@@ -1702,7 +1702,7 @@ let splashStep = 0;
 const PAYSTACK_PK = 'pk_test_827c24659f586070f6fa37830ed2830cb019ed33';
 const PAYSTACK_SK = 'sk_test_3305f9ea593071844552d5b1f03e67d76e378373';
 // Replace with your Firebase UID from Firebase Console → Authentication → Users
-const ADMIN_UID = 'iIjq7QcJT6NpvTwr8u2vW9CeTIa2';
+const ADMIN_UID = 'REPLACE_WITH_YOUR_FIREBASE_UID';
 
 /* ══ SESSION TIMEOUT — 30 minutes inactivity ══ */
 let sessionTimer = null;
@@ -2047,7 +2047,9 @@ async function enterApp() {
   updateUserUI();
   goPage('dashboard');
   renderAll();
-  checkAdminAccess(); // run immediately with whatever profile is loaded
+  // Push initial state so back button never exits app
+  history.pushState({fix9ja:true}, '', window.location.pathname + window.location.search);
+  checkAdminAccess();
   // Load Firebase data in background — never block app entry
   if(firebaseReady && currentUser && currentUser.uid !== 'demo') {
     loadWallet().catch(()=>{});
@@ -2283,7 +2285,7 @@ function goPage(page) {
     titleEl.textContent = PAGE_TITLES[page] || 'Fix9ja';
   }
   if(window.innerWidth<=768) { document.getElementById('sidebar').classList.remove('open'); document.getElementById('sidebar-overlay').classList.remove('open'); }
-  window.scrollTo(0,0);
+  window.scrollTo(0,0); document.querySelector('.main-area')?.scrollTo(0,0);
   // Track history for back button
   if(pageHistory[pageHistory.length-1] !== page) {
     pageHistory.push(page);
@@ -2310,10 +2312,10 @@ function goPage(page) {
 
 // Intercept browser back button — ALWAYS stay inside app, never exit
 window.addEventListener('popstate', function(e) {
-  // If we are in the app, handle navigation internally
+  // Always prevent app from closing — handle navigation internally
   if(currentUser) {
     if(pageHistory.length > 1) {
-      pageHistory.pop(); // remove current
+      pageHistory.pop();
       const prev = pageHistory[pageHistory.length - 1];
       PAGES.forEach(p => {
         const pc = document.getElementById('pc-'+p);
@@ -2325,17 +2327,18 @@ window.addEventListener('popstate', function(e) {
       });
       const titleEl = document.getElementById('topbar-title');
       if(titleEl) titleEl.textContent = PAGE_TITLES[prev] || 'Fix9ja';
-      window.scrollTo(0,0);
+      window.scrollTo(0,0); document.querySelector('.main-area')?.scrollTo(0,0);
     } else {
-      // At root of history — push dashboard so back never exits
+      // At root — go to dashboard, never exit
+      pageHistory = ['dashboard'];
       goPage('dashboard');
     }
-    // Always push a new state to prevent exit
-    history.pushState({fix9ja:true, page: pageHistory[pageHistory.length-1]||'dashboard'},'','#'+(pageHistory[pageHistory.length-1]||'dashboard'));
   } else {
-    // Not logged in — push a state so browser doesn't close the page
-    history.pushState({},'',window.location.pathname);
+    // Not logged in — push state to prevent exit
+    goToLogin();
   }
+  // Always push a new state so there's always something to go back to
+  history.pushState({fix9ja:true}, '', window.location.pathname + window.location.search);
 });
 
 function toggleSidebar() {
@@ -2441,6 +2444,12 @@ async function submitKYC() {
   if(!currentUser || !firebaseReady) { showToast('Please log in first','error'); return; }
   setLoading('kyc-submit-btn', true, 'Submitting...');
   try {
+    // Ensure wallet doc exists first (new users may not have one)
+    const walletRef = fbDb.collection('wallets').doc(currentUser.uid);
+    const walletDoc = await walletRef.get();
+    if(!walletDoc.exists) {
+      await walletRef.set({ balance: 0, totalFunded: 0, totalSpent: 0, createdAt: firebase.firestore.FieldValue.serverTimestamp() });
+    }
     await fbDb.collection('kyc').doc(currentUser.uid).set({
       userId: currentUser.uid,
       name: userProfile?.fullName || currentUser?.displayName || '',
@@ -2939,20 +2948,27 @@ function updateNotifBadge() {
 async function loadNotifications() {
   if(!firebaseReady || !currentUser || currentUser.uid==='demo') return;
   try {
-    const snap = await fbDb.collection('notifications')
+    // Use onSnapshot for real-time updates — notifications never wipe on nav
+    fbDb.collection('notifications')
       .where('userId','==',currentUser.uid)
-      .limit(30).get();
-    notifications = snap.docs.map(d=>({
-      id:d.id, title:d.data().title, msg:d.data().message||d.data().msg||'',
-      time:d.data().createdAt?.toDate?.().toLocaleDateString('en-NG')||'Recent',
-      unread:!d.data().read
-    }));
-    // Sort by time descending client-side
-    notifications.sort((a,b) => (b.time > a.time ? 1 : -1));
-    renderNotifications();
-    updateNotifBadge();
+      .limit(30)
+      .onSnapshot(snap => {
+        notifications = snap.docs.map(d=>({
+          id:d.id,
+          title:d.data().title,
+          msg:d.data().message||d.data().msg||'',
+          time:d.data().createdAt?.toDate?.().toLocaleDateString('en-NG')||'Recent',
+          unread:!d.data().read,
+          ts: d.data().createdAt?.seconds || 0
+        }));
+        notifications.sort((a,b) => b.ts - a.ts);
+        renderNotifications();
+        updateNotifBadge();
+      }, e => {
+        console.warn('Notifications error:', e.message);
+      });
   } catch(e) {
-    console.warn('Notifications error:', e.message);
+    console.warn('Notifications setup error:', e.message);
   }
 }
 
@@ -3156,7 +3172,7 @@ async function loadReferralData() {
     const code = generateReferralCode(currentUser.uid);
     codeEl.textContent = code;
     try {
-      await fbDb.collection('users').doc(currentUser.uid).update({ referralCode: code });
+      await fbDb.collection('users').doc(currentUser.uid).set({ referralCode: code }, { merge: true });
       userProfile = { ...userProfile, referralCode: code };
     } catch(e){}
   }
@@ -4152,6 +4168,10 @@ async function initOrFindJob(artisanId, artisanName, artisanTrade) {
         chatId,
         status: 'open',
         amount: 0,
+        is_paid: false,
+        is_released: false,
+        agreed_price: 0,
+        payment_reference: null,
         requestSentAt: firebase.firestore.FieldValue.serverTimestamp(),
         createdAt: firebase.firestore.FieldValue.serverTimestamp()
       });
